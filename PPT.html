@@ -1,0 +1,3196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mekong Tech Hub - Thuyết minh Ban Quản lý Khu Công nghệ cao TP.HCM</title>
+    <!-- Mermaid Library -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 40px 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #FFD700;
+            padding-bottom: 15px;
+        }
+
+        .slide h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #64FFDA;
+        }
+
+        .slide h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #82B1FF;
+        }
+
+        .slide h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #A5D6A7;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .slide-content {
+            width: 100%;
+            height: calc(100% - 120px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+
+        .content-grid {
+            width: 100%;
+            max-width: 1400px;
+            display: grid;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .two-column {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .three-column {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .four-column {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .highlight {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .metric-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #64FFDA;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .flex-metrics {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.1rem;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px solid #FFD700;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .chart-container-large {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .mermaid {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .compliance-card {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .esg-card {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .case-study-card {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .competitive-card {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 18px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border-left: 4px solid #FFD700;
+        }
+
+        .team-card {
+            background: rgba(156, 39, 176, 0.1);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .risk-card {
+            background: rgba(255, 87, 34, 0.1);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .commitment-card {
+            background: rgba(63, 81, 181, 0.1);
+            border: 1px solid rgba(63, 81, 181, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .location-badge {
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            font-size: 1.1rem;
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+        }
+
+        .very-small-text {
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active * {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table th {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .system-architecture {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(63, 81, 181, 0.1));
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .layer-box {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .layer-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .connection-arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #FFD700;
+        }
+        
+        .timeline-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .market-growth-chart {
+            margin: 20px 0;
+        }
+        
+        .bar-chart-container {
+            position: relative;
+        }
+        
+        .bar-item {
+            transition: all 0.3s ease;
+        }
+        
+        .bar-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .bar-value {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .bar-value:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .timeline-chart {
+            margin: 20px 0;
+        }
+
+        @media (max-width: 1200px) {
+            .slide {
+                padding: 30px 40px;
+            }
+            
+            .slide h1 {
+                font-size: 2.4rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.9rem;
+            }
+            
+            .three-column {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .four-column {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 25px;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .slide h2 {
+                font-size: 1.6rem;
+            }
+            
+            .two-column,
+            .three-column,
+            .four-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .metric-box {
+                min-height: 100px;
+            }
+            
+            .metric-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="slide-counter" id="slideCounter">1 / 18</div>
+
+        <!-- Slide 1: Title & Company Info -->
+        <div class="slide active">
+            <div class="slide-number">01</div>
+            <div class="slide-header">
+                <h1>CÔNG TY CỔ PHẦN CÔNG NGHỆ MEKONG</h1>
+                <h2>Dự án Nhà máy sản xuất thiết bị công nghệ cao</h2>
+                <div class="location-badge">KHU CÔNG NGHỆ CAO TP.HCM - PHƯỜNG LONG THẠNH MỸ - TP. THỦ ĐỨC</div>
+            </div>
+            
+            <div class="slide-content">
+                <p style="font-size: 1.4rem; text-align: center; margin: 20px 0;">
+                    <span class="highlight">Dự án đầu tư 10 triệu USD</span><br>
+                    Phát triển bền vững 50 năm - Trung tâm IoT Gateway & Robot AMR hàng đầu khu vực
+                </p>
+
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">$10M</div>
+                        <div class="metric-label">Tổng đầu tư</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">18.5%</div>
+                        <div class="metric-label">IRR dự kiến</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">7.5 yrs</div>
+                        <div class="metric-label">Payback Period</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">200</div>
+                        <div class="metric-label">Việc làm tạo ra</div>
+                    </div>
+                </div>
+
+                <div class="mermaid">
+                    graph LR
+                        A[IoT Gateway<br/>12 models] --> C[Smart Factory<br/>Integration]
+                        B[Robot AMR<br/>8 models] --> C
+                        C --> D[AI Analytics<br/>Platform]
+                        D --> E[Industry 4.0<br/>Solutions]
+                </div>
+
+                <p class="small-text" style="text-align: center; margin-top: 20px;">
+                    Thuyết minh dự án đầu tư - Ban Quản lý Khu Công nghệ cao TP.HCM<br>
+                    <strong>Ngày trình bày: [Ngày tháng năm]</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Executive Summary -->
+        <div class="slide">
+            <div class="slide-number">02</div>
+            <div class="slide-header">
+                <h2>TÓM TẮT ĐIỀU HÀNH</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid two-column">
+                    <div class="compliance-card">
+                        <h3> Thông tin dự án</h3>
+                        <table class="data-table">
+                            <tr><td><strong>Tên dự án</strong></td><td>Nhà máy sản xuất thiết bị công nghệ cao Mekong</td></tr>
+                            <tr><td><strong>Chủ đầu tư</strong></td><td>Công ty Cổ phần Công nghệ Mekong</td></tr>
+                            <tr><td><strong>Địa điểm</strong></td><td>Khu CNC TP.HCM, Long Thạnh Mỹ, Thủ Đức</td></tr>
+                            <tr><td><strong>Diện tích</strong></td><td>15,000 m² (mua lại nhà máy Tohin)</td></tr>
+                            <tr><td><strong>Tổng vốn</strong></td><td>10 triệu USD</td></tr>
+                            <tr><td><strong>Thời gian</strong></td><td>50 năm (2025-2075)</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div class="compliance-card">
+                        <h3> Chỉ số tài chính chính</h3>
+                        <div class="flex-metrics">
+                            <div class="metric-box">
+                                <div class="metric-number">18.5%</div>
+                                <div class="metric-label">IRR dự kiến</div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-number">7.5</div>
+                                <div class="metric-label">Năm hoàn vốn</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Mục tiêu chiến lược</h4>
+                    <div class="content-grid two-column small-text">
+                        <ul>
+                            <li>Trở thành nhà sản xuất IoT Gateway & Robot AMR hàng đầu Việt Nam</li>
+                            <li>Chiếm 15% thị trường IoT công nghiệp Việt Nam vào năm 2030</li>
+                        </ul>
+                        <ul>
+                            <li>Đóng góp vào chuyển đổi số của ngành sản xuất Việt Nam</li>
+                            <li>Xuất khẩu 30% sản phẩm ra các nước ASEAN</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Thông tin pháp lý & Compliance -->
+        <div class="slide">
+            <div class="slide-number">03</div>
+            <div class="slide-header">
+                <h2>THÔNG TIN PHÁP LÝ & COMPLIANCE</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid three-column">
+                    <div class="compliance-card">
+                        <h4> Cơ sở pháp lý</h4>
+                        <ul class="very-small-text">
+                            <li>Luật Đầu tư 2020 (No. 61/2020/QH14)</li>
+                            <li>Luật Công nghệ cao 2008</li>
+                            <li>Luật Doanh nghiệp 2020</li>
+                            <li>Nghị định ưu đãi đầu tư</li>
+                            <li>Quy hoạch Khu CNC TP.HCM</li>
+                        </ul>
+                    </div>
+                    <div class="compliance-card">
+                        <h4> Ưu đãi đầu tư</h4>
+                        <ul class="very-small-text">
+                            <li>Thuế TNDN: 10% trong 15 năm</li>
+                            <li>Miễn thuế TNDN: 4 năm đầu</li>
+                            <li>Giảm 50% thuế: 9 năm tiếp theo</li>
+                            <li>Khấu hao nhanh thiết bị</li>
+                            <li>Miễn thuế nhập khẩu</li>
+                        </ul>
+                    </div>
+                    <div class="compliance-card">
+                        <h4> Tiêu chuẩn tuân thủ</h4>
+                        <ul class="very-small-text">
+                            <li>ISO 9001:2015 (Quality)</li>
+                            <li>ISO 14001:2015 (Environment)</li>
+                            <li>ISO 45001:2018 (Safety)</li>
+                            <li>IEC 61508 (Functional Safety)</li>
+                            <li>CE Mark, RoHS, FCC</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4>⏱ Timeline thủ tục pháp lý</h4>
+                    <div class="system-architecture">
+                        <h4 style="text-align: center; margin-bottom: 15px;">Lộ trình Thủ tục Pháp lý & Tuân thủ</h4>
+                        
+                        <div class="timeline-item" style="background: rgba(76, 175, 80, 0.1); border-left-color: #4CAF50;">
+                            <strong> Tháng 1-3: Thủ tục Đầu tư</strong><br>
+                            <small> Giấy chứng nhận đầu tư →  Quyền sử dụng đất →  Đăng ký doanh nghiệp</small>
+                        </div>
+                        
+                        <div class="timeline-item" style="background: rgba(255, 193, 7, 0.1); border-left-color: #FFC107;">
+                            <strong> Tháng 4-6: Thủ tục Xây dựng</strong><br>
+                            <small> Giấy phép xây dựng →  Thẩm định thiết kế →  Nghiệm thu công trình</small>
+                        </div>
+                        
+                        <div class="timeline-item" style="background: rgba(100, 255, 218, 0.1); border-left-color: #64FFDA;">
+                            <strong> Tháng 4-6: Thủ tục Môi trường</strong><br>
+                            <small> Đánh giá tác động môi trường →  Giấy phép môi trường →  Cam kết bảo vệ môi trường</small>
+                        </div>
+                        
+                        <div class="timeline-item" style="background: rgba(156, 39, 176, 0.1); border-left-color: #9C27B0;">
+                            <strong> Tháng 7-8: Thủ tục Kinh doanh</strong><br>
+                            <small> Giấy phép kinh doanh →  Mã số thuế →  Đăng ký xuất nhập khẩu</small>
+                        </div>
+                        
+                        <div class="timeline-item" style="background: rgba(255, 87, 34, 0.1); border-left-color: #FF5722;">
+                            <strong> Tháng 6-7: An toàn & PCCC</strong><br>
+                            <small> Thẩm duyệt PCCC →  Nghiệm thu PCCC →  Chứng chỉ an toàn lao động</small>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <strong> Mục tiêu: Hoàn thành 100% thủ tục trong 8 tháng</strong><br>
+                            <small>Timeline tối ưu với song song hóa các quy trình</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Market Opportunity & Analysis -->
+        <div class="slide">
+            <div class="slide-number">04</div>
+            <div class="slide-header">
+                <h2>CƠ HỘI THỊ TRƯỜNG & PHÂN TÍCH</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">$5.117B</div>
+                        <div class="metric-label">Thị trường IoT VN 2029</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">13.23%</div>
+                        <div class="metric-label">CAGR IoT Vietnam</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">$832M</div>
+                        <div class="metric-label">AMR Market VN 2029</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">#2</div>
+                        <div class="metric-label">Vị trí trong ASEAN</div>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center; margin-bottom: 20px;"> Tăng trưởng Thị trường IoT & AMR Việt Nam 2024-2029</h4>
+                    <div class="market-growth-chart">
+                        <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
+                            <h5 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">Tăng trưởng thị trường theo năm (Tỷ USD)</h5>
+                            
+                            <div class="bar-chart-container" style="display: flex; align-items: end; justify-content: space-around; height: 300px; border-bottom: 3px solid #1e3c72; border-left: 3px solid #1e3c72; padding: 0 20px;">
+                                
+                                <!-- 2024 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #FF5722, #FF8A65); height: 60px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px;">1.2</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2024</div>
+                                </div>
+                                
+                                <!-- 2025 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #FF7043, #FF8A65); height: 80px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px;">1.6</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2025</div>
+                                </div>
+                                
+                                <!-- 2026 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #FF9800, #FFB74D); height: 105px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px;">2.1</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2026</div>
+                                </div>
+                                
+                                <!-- 2027 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #4CAF50, #81C784); height: 140px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px;">2.8</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2027</div>
+                                </div>
+                                
+                                <!-- 2028 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #2196F3, #64B5F6); height: 190px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px;">3.8</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2028</div>
+                                </div>
+                                
+                                <!-- 2029 -->
+                                <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 80px;">
+                                    <div class="bar-value" style="background: linear-gradient(to top, #9C27B0, #BA68C8); height: 260px; width: 60px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; padding-bottom: 5px; font-size: 0.9rem;">5.12</div>
+                                    <div style="color: #1e3c72; font-weight: bold;">2029</div>
+                                </div>
+                                
+                                <!-- Y-axis labels -->
+                                <div style="position: absolute; left: -40px; top: 0; height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; color: #1e3c72; font-weight: bold; font-size: 0.8rem;">
+                                    <div>0</div>
+                                    <div>1</div>
+                                    <div>2</div>
+                                    <div>3</div>
+                                    <div>4</div>
+                                    <div>5</div>
+                                    <div>6</div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 20px; color: #1e3c72;">
+                                <div style="font-weight: bold; font-size: 1.1rem;"> CAGR: 13.23% | Tăng trưởng mạnh mẽ liên tục</div>
+                                <div style="font-size: 0.9rem; margin-top: 5px;">Dự báo từ Nghiên cứu Thị trường IoT & AMR Việt Nam 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="chart-container">
+                        <h4> Thị trường IoT công nghiệp Việt Nam</h4>
+                        <ul class="small-text">
+                            <li><strong>2024:</strong> $1.2B → <strong>2029:</strong> $5.117B</li>
+                            <li><strong>Manufacturing IoT:</strong> 35% thị trường</li>
+                            <li><strong>Logistics automation:</strong> 25% thị trường</li>
+                            <li><strong>Smart factory adoption:</strong> 15% doanh nghiệp</li>
+                        </ul>
+                    </div>
+                    <div class="chart-container">
+                        <h4> Cạnh tranh trong nước</h4>
+                        <ul class="small-text">
+                            <li><strong>AMR/AGV:</strong> Chỉ 11 nhà sản xuất trong nước</li>
+                            <li><strong>IoT Gateway:</strong> Thị trường còn trống</li>
+                            <li><strong>Phụ thuộc nhập khẩu:</strong> 80%</li>
+                            <li><strong>Cơ hội thay thế:</strong> Rất lớn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Investment Overview -->
+        <div class="slide">
+            <div class="slide-number">05</div>
+            <div class="slide-header">
+                <h2>TỔNG QUAN ĐẦU TƯ</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">$10M</div>
+                        <div class="metric-label">Tổng vốn đầu tư</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">$7M</div>
+                        <div class="metric-label">CAPEX (70%)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">$3M</div>
+                        <div class="metric-label">OPEX & R&D (30%)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">50 năm</div>
+                        <div class="metric-label">Chu kỳ dự án</div>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Phân bổ vốn đầu tư chi tiết</h4>
+                    <div class="system-architecture">
+                        <h4 style="text-align: center; margin-bottom: 20px;">Cấu trúc CAPEX $7M (70% tổng vốn)</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
+                            <div class="layer-box" style="background: rgba(255, 87, 34, 0.2); border-color: #FF5722;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: #FF5722;">25.7%</div>
+                                    <div><strong>Mua lại nhà máy Tohin</strong></div>
+                                    <div class="small-text">$1.8M USD</div>
+                                </div>
+                            </div>
+                            
+                            <div class="layer-box" style="background: rgba(63, 81, 181, 0.2); border-color: #3F51B5;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: #3F51B5;">40.0%</div>
+                                    <div><strong>SMT Lines & thiết bị sản xuất</strong></div>
+                                    <div class="small-text">$2.8M USD</div>
+                                </div>
+                            </div>
+                            
+                            <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: #4CAF50;">17.1%</div>
+                                    <div><strong>Cơ sở hạ tầng & cải tạo</strong></div>
+                                    <div class="small-text">$1.2M USD</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                            <div class="layer-box" style="background: rgba(255, 193, 7, 0.2); border-color: #FFC107;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #FFC107;">7.1%</div>
+                                    <div><strong>Hệ thống IT & automation</strong></div>
+                                    <div class="small-text">$0.5M USD</div>
+                                </div>
+                            </div>
+                            
+                            <div class="layer-box" style="background: rgba(156, 39, 176, 0.2); border-color: #9C27B0;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #9C27B0;">5.7%</div>
+                                    <div><strong>R&D laboratory</strong></div>
+                                    <div class="small-text">$0.4M USD</div>
+                                </div>
+                            </div>
+                            
+                            <div class="layer-box" style="background: rgba(100, 255, 218, 0.2); border-color: #64FFDA;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #64FFDA;">4.3%</div>
+                                    <div><strong>Dự phòng</strong></div>
+                                    <div class="small-text">$0.3M USD</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <strong> Ưu tiên: 65.7% cho Tohin & Thiết bị sản xuất</strong><br>
+                            <small>Tận dụng tối đa lợi thế mua lại nhà máy hiện có</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="chart-container">
+                        <h4> Chi tiết CAPEX ($7M)</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Hạng mục</th><th>Số tiền</th><th>%</th></tr>
+                            <tr><td>Mua lại nhà máy Tohin</td><td>$1.8M</td><td>25.7%</td></tr>
+                            <tr><td>SMT Lines & thiết bị</td><td>$2.8M</td><td>40%</td></tr>
+                            <tr><td>Cơ sở hạ tầng</td><td>$1.2M</td><td>17.1%</td></tr>
+                            <tr><td>IT & automation</td><td>$0.5M</td><td>7.1%</td></tr>
+                            <tr><td>R&D lab</td><td>$0.4M</td><td>5.7%</td></tr>
+                            <tr><td>Dự phòng</td><td>$0.3M</td><td>4.3%</td></tr>
+                        </table>
+                    </div>
+                    <div class="chart-container">
+                        <h4> Lợi ích kinh tế</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Chỉ số</th><th>Giá trị</th></tr>
+                            <tr><td>NPV (50 năm)</td><td>$45.2M</td></tr>
+                            <tr><td>IRR</td><td>18.5%</td></tr>
+                            <tr><td>Payback period</td><td>7.5 năm</td></tr>
+                            <tr><td>Việc làm tạo ra</td><td>200 người</td></tr>
+                            <tr><td>Đóng góp GDP</td><td>$150M (50 năm)</td></tr>
+                            <tr><td>Thuế đóng góp</td><td>$12M (50 năm)</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Lợi thế Tohin Factory Acquisition -->
+        <div class="slide">
+            <div class="slide-number">06</div>
+            <div class="slide-header">
+                <h2>LỢI THẾ CHIẾN LƯỢC: MUA LẠI NHÀ MÁY TOHIN</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">$1.8M</div>
+                        <div class="metric-label">Giá mua lại</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">15,000m²</div>
+                        <div class="metric-label">Diện tích đất</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">18 tháng</div>
+                        <div class="metric-label">Tiết kiệm thời gian</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">60%</div>
+                        <div class="metric-label">Tiết kiệm CAPEX</div>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Sơ đồ Nhà máy Tohin & Lợi thế Vị trí</h4>
+                    <div class="system-architecture">
+                        
+                        <!-- Vị trí trung tâm -->
+                        <div class="layer-box" style="background: rgba(63, 81, 181, 0.2); border-color: #3F51B5; margin-bottom: 20px;">
+                            <div style="text-align: center;">
+                                <strong> KHU CÔNG NGHỆ CAO TP.HCM - VỊ TRÍ TRUNG TÂM</strong><br>
+                                <small>Phường Long Thạnh Mỹ, TP. Thủ Đức, TP. Hồ Chí Minh</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Nhà máy Tohin -->
+                        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px; margin: 20px 0;">
+                            
+                            <!-- Kết nối Logistics -->
+                            <div class="layer-box" style="background: rgba(255, 193, 7, 0.1); border-color: #FFC107;">
+                                <div style="text-align: center;">
+                                    <div><strong> Kết nối Logistics</strong></div>
+                                    <div class="very-small-text">
+                                        • Cảng Cát Lái: 15km<br>
+                                        • Sân bay TSN: 25km<br>
+                                        • Cao tốc Long Thành<br>
+                                        • Trung tâm logistics miền Nam
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Nhà máy Tohin chính -->
+                            <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; padding: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 1.3rem;"><strong> NHÀ MÁY TOHIN</strong></div>
+                                    <div style="font-size: 1.1rem; margin: 10px 0;">15,000 m² tổng diện tích</div>
+                                    
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+                                        <div class="layer-box" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255,255,255,0.5);">
+                                            <div class="very-small-text">
+                                                <strong> Dây chuyền SMT</strong><br>
+                                                Sẵn sàng sử dụng
+                                            </div>
+                                        </div>
+                                        <div class="layer-box" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255,255,255,0.5);">
+                                            <div class="very-small-text">
+                                                <strong> Nhà xưởng sản xuất</strong><br>
+                                                8,000 m² khả dụng
+                                            </div>
+                                        </div>
+                                        <div class="layer-box" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255,255,255,0.5);">
+                                            <div class="very-small-text">
+                                                <strong> Hạ tầng tiện ích</strong><br>
+                                                Điện, nước, xử lý thải
+                                            </div>
+                                        </div>
+                                        <div class="layer-box" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255,255,255,0.5);">
+                                            <div class="very-small-text">
+                                                <strong> R&D Laboratory</strong><br>
+                                                Không gian nghiên cứu
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Nguồn nhân lực -->
+                            <div class="layer-box" style="background: rgba(156, 39, 176, 0.1); border-color: #9C27B0;">
+                                <div style="text-align: center;">
+                                    <div><strong> Nguồn nhân lực</strong></div>
+                                    <div class="very-small-text">
+                                        • 30 kỹ thuật viên có kinh nghiệm<br>
+                                        • Gần các trường đại học<br>
+                                        • Hệ sinh thái công nghệ TP.HCM<br>
+                                        • Chi phí nhân công cạnh tranh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sản phẩm đầu ra -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px;">
+                            <div class="layer-box" style="background: rgba(100, 255, 218, 0.2); border-color: #64FFDA;">
+                                <div style="text-align: center;">
+                                    <div><strong> IoT Gateway Production</strong></div>
+                                    <div class="very-small-text">Sản xuất thiết bị IoT Gateway</div>
+                                </div>
+                            </div>
+                            <div class="layer-box" style="background: rgba(255, 87, 34, 0.2); border-color: #FF5722;">
+                                <div style="text-align: center;">
+                                    <div><strong> AMR Assembly Line</strong></div>
+                                    <div class="very-small-text">Lắp ráp Robot AMR</div>
+                                </div>
+                            </div>
+                            <div class="layer-box" style="background: rgba(255, 193, 7, 0.2); border-color: #FFC107;">
+                                <div style="text-align: center;">
+                                    <div><strong> R&D Laboratory</strong></div>
+                                    <div class="very-small-text">Nghiên cứu & phát triển</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <strong> Lợi thế cốt lõi: Tiết kiệm 18 tháng xây dựng + 60% CAPEX</strong><br>
+                            <small>Khởi động sản xuất ngay từ tháng thứ 6</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Product Portfolio -->
+        <div class="slide">
+            <div class="slide-number">07</div>
+            <div class="slide-header">
+                <h2>DANH MỤC SẢN PHẨM CHIẾN LƯỢC</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Sơ đồ Hệ thống IoT Gateway & Robot AMR</h4>
+                    <div class="system-architecture">
+                        <h4 style="text-align: center; margin-bottom: 20px;">Kiến trúc Hệ thống Tích hợp</h4>
+                        
+                        <div class="layer-box" style="background: rgba(100, 255, 218, 0.2); border-color: #64FFDA;">
+                            <strong> IoT Gateway Series (12 mẫu sản phẩm)</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+                                <div>MK-100 Entry<br><small>ARM Cortex-A55, 4GB RAM<br>Wi-Fi 5, 12-25 triệu VNĐ</small></div>
+                                <div>MK-200 Professional<br><small>ARM Cortex-A78, 8GB RAM<br>Wi-Fi 6, 5G, 35-60 triệu VNĐ</small></div>
+                                <div>MK-300 Enterprise<br><small>Custom ASIC, 16GB RAM<br>AI 10+ TOPS, 70-95 triệu VNĐ</small></div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(255, 193, 7, 0.2); border-color: #FFC107;">
+                            <strong> Robot AMR Series (8 mẫu robot)</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+                                <div>AMR-100 Light<br><small>100kg payload<br>2D LiDAR + SLAM<br>600-800 triệu VNĐ</small></div>
+                                <div>AMR-500 Medium<br><small>500kg payload<br>3D LiDAR + AI<br>1.2-1.8 tỷ VNĐ</small></div>
+                                <div>AMR-1000 Heavy<br><small>1000kg payload<br>Advanced Navigation<br>2.5-3.5 tỷ VNĐ</small></div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(156, 39, 176, 0.2); border-color: #9C27B0;">
+                            <strong> Nền tảng Đám mây Tích hợp</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+                                <div>Quản lý Fleet<br><small>Điều khiển đội robot</small></div>
+                                <div>AI Analytics<br><small>Phân tích dữ liệu thông minh</small></div>
+                                <div>Predictive Maintenance<br><small>Bảo trì dự đoán</small></div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50;">
+                            <strong> Giải pháp Industry 4.0 Hoàn chỉnh</strong><br>
+                            <div style="text-align: center; margin-top: 10px;">
+                                <strong>Nhà máy Thông minh - Smart Factory Toàn diện</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3> Dòng sản phẩm IoT Gateway</h3>
+                        <p><strong>12 mẫu sản phẩm</strong></p>
+                        <ul class="very-small-text">
+                            <li><strong>Cơ bản:</strong> MK-100 (12-25 triệu VNĐ)</li>
+                            <li><strong>Chuyên nghiệp:</strong> MK-200 (35-60 triệu VNĐ)</li>
+                            <li><strong>Doanh nghiệp:</strong> MK-300 (70-95 triệu VNĐ)</li>
+                            <li><strong>Tính năng:</strong> 5G, AI Edge, An ninh mạng</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <h3> Dòng sản phẩm Robot AMR</h3>
+                        <p><strong>8 mẫu robot tự hành</strong></p>
+                        <ul class="very-small-text">
+                            <li><strong>Nhẹ:</strong> AMR-100 (600-800 triệu VNĐ)</li>
+                            <li><strong>Trung bình:</strong> AMR-500 (1.2-1.8 tỷ VNĐ)</li>
+                            <li><strong>Nặng:</strong> AMR-1000 (2.5-3.5 tỷ VNĐ)</li>
+                            <li><strong>Tính năng:</strong> AI Navigation, Quản lý đội robot</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <h3> Dịch vụ Tích hợp</h3>
+                        <p><strong>Giải pháp toàn diện</strong></p>
+                        <ul class="very-small-text">
+                            <li>Tư vấn & thiết kế hệ thống</li>
+                            <li>Triển khai & vận hành thử</li>
+                            <li>Đào tạo vận hành</li>
+                            <li>Bảo trì & hỗ trợ 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Technology Stack -->
+        <div class="slide">
+            <div class="slide-number">08</div>
+            <div class="slide-header">
+                <h2>HỆ SINH THÁI CÔNG NGHỆ TIÊN TIẾN</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="chart-container-large">
+                    <h3 style="text-align: center; margin-bottom: 20px;"> Kiến trúc 5 tầng tích hợp AI Edge</h3>
+                    <div class="system-architecture">
+                        
+                        <div class="layer-box" style="background: rgba(255, 87, 34, 0.2); border-color: #FF5722;">
+                            <strong>TẦNG 5: AI Edge Computing & Phân tích Dự đoán</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9rem;">
+                                <div>TensorFlow Lite</div>
+                                <div>NVIDIA Jetson</div>
+                                <div>Edge AI inference</div>
+                                <div>4-20 TOPS</div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(156, 39, 176, 0.2); border-color: #9C27B0;">
+                            <strong>TẦNG 4: Tích hợp Đám mây Lai & Digital Twin</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9rem;">
+                                <div>AWS IoT Core</div>
+                                <div>Azure IoT Hub</div>
+                                <div>Private Cloud</div>
+                                <div>Đồng bộ Real-time</div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(63, 81, 181, 0.2); border-color: #3F51B5;">
+                            <strong>TẦNG 3: Truyền thông Đa giao thức</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9rem;">
+                                <div>MQTT 5.0</div>
+                                <div>OPC-UA</div>
+                                <div>5G/WiFi6</div>
+                                <div>Industrial Ethernet</div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50;">
+                            <strong>TẦNG 2: IoT Gateway Hub & Điều khiển Robot</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9rem;">
+                                <div>ARM Cortex</div>
+                                <div>SLAM Navigation</div>
+                                <div>Quản lý Fleet</div>
+                                <div>32 kênh I/O</div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow"></div>
+                        
+                        <div class="layer-box" style="background: rgba(255, 193, 7, 0.2); border-color: #FFC107;">
+                            <strong>TẦNG 1: Cảm biến Công nghiệp & Bộ truyền động</strong><br>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9rem;">
+                                <div>2D/3D LiDAR</div>
+                                <div>Camera & IMU</div>
+                                <div>Nhiệt độ</div>
+                                <div>Cảm biến lực</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="product-card">
+                        <h4> Bảo mật Doanh nghiệp</h4>
+                        <ul class="very-small-text">
+                            <li>Mã hóa dựa trên phần cứng (HSM)</li>
+                            <li>Khởi động an toàn & cập nhật OTA</li>
+                            <li>Phân đoạn mạng & VPN</li>
+                            <li>Tuân thủ: IEC 62443, ISO 27001</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <h4> AI & Học máy</h4>
+                        <ul class="very-small-text">
+                            <li>Thuật toán bảo trì dự đoán</li>
+                            <li>Phát hiện bất thường & cảnh báo</li>
+                            <li>Thuật toán tối ưu hóa (GA, PSO)</li>
+                            <li>Thị giác máy tính & nhận dạng mẫu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Phân bổ vốn & Timeline -->
+        <div class="slide">
+            <div class="slide-number">09</div>
+            <div class="slide-header">
+                <h2>PHÂN BỔ VỐN CHI TIẾT & TIMELINE</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid two-column">
+                    <div class="chart-container">
+                        <h4> Phân bổ vốn theo giai đoạn</h4>
+                        <div class="timeline-item">
+                            <strong>Năm 1-2 (60% = $6M):</strong><br>
+                            Mua lại Tohin, thiết bị cơ bản, khởi động sản xuất
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Năm 3-5 (25% = $2.5M):</strong><br>
+                            Mở rộng dây chuyền, R&D AMR, marketing
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Năm 6-10 (10% = $1M):</strong><br>
+                            Nâng cấp công nghệ, mở rộng thị trường
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Năm 11-50 (5% = $0.5M):</strong><br>
+                            Duy trì, nâng cấp định kỳ
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <h4> Dòng tiền dự kiến (triệu USD)</h4>
+                        <table class="data-table">
+                            <tr><th>Năm</th><th>Doanh thu</th><th>EBITDA</th></tr>
+                            <tr><td>Năm 2</td><td>$0.8M</td><td>$0.1M</td></tr>
+                            <tr><td>Năm 5</td><td>$3.2M</td><td>$1.1M</td></tr>
+                            <tr><td>Năm 10</td><td>$8.5M</td><td>$3.4M</td></tr>
+                            <tr><td>Năm 15</td><td>$18.2M</td><td>$8.1M</td></tr>
+                            <tr><td>Năm 25</td><td>$32.5M</td><td>$16.3M</td></tr>
+                            <tr><td>Năm 50</td><td>$58.7M</td><td>$29.4M</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center; margin-bottom: 20px;"> Timeline triển khai dự án & Cash flow 50 năm</h4>
+                    <div class="timeline-chart">
+                        <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                            <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Lộ trình triển khai chi tiết theo giai đoạn</h5>
+                            
+                            <!-- Timeline container -->
+                            <div style="position: relative; padding: 20px 0;">
+                                <!-- Main timeline line -->
+                                <div style="position: absolute; top: 50px; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #FF5722, #FF9800, #4CAF50, #2196F3, #9C27B0); border-radius: 2px;"></div>
+                                
+                                <!-- Timeline items -->
+                                <div style="display: flex; justify-content: space-between; padding: 0 5%; position: relative;">
+                                    
+                                    <!-- Năm 1-2 -->
+                                    <div style="text-align: center; width: 18%;">
+                                        <div style="width: 16px; height: 16px; background: #FF5722; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FF5722;"></div>
+                                        <div style="background: #FF5722; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">Năm 1-2</div>
+                                        <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                            <strong>Khởi tạo & Tohin</strong><br>
+                                            • Mua lại nhà máy<br>
+                                            • Setup SMT lines<br>
+                                            • Sản xuất thí điểm<br>
+                                            • <strong>$3.2M đầu tư</strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Năm 3-5 -->
+                                    <div style="text-align: center; width: 18%;">
+                                        <div style="width: 16px; height: 16px; background: #FF9800; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FF9800;"></div>
+                                        <div style="background: #FF9800; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">Năm 3-5</div>
+                                        <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                            <strong>Mở rộng Production</strong><br>
+                                            • R&D AMR, marketing<br>
+                                            • 50 khách hàng<br>
+                                            • $1.5M doanh thu<br>
+                                            • <strong>$2.5M đầu tư</strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Năm 6-10 -->
+                                    <div style="text-align: center; width: 18%;">
+                                        <div style="width: 16px; height: 16px; background: #4CAF50; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #4CAF50;"></div>
+                                        <div style="background: #4CAF50; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">Năm 6-10</div>
+                                        <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                            <strong>Tăng trưởng & Mở rộng</strong><br>
+                                            • Nâng cấp công nghệ<br>
+                                            • 200 khách hàng<br>
+                                            • $8.5M doanh thu<br>
+                                            • <strong>$1M đầu tư</strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Năm 11-30 -->
+                                    <div style="text-align: center; width: 18%;">
+                                        <div style="width: 16px; height: 16px; background: #2196F3; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #2196F3;"></div>
+                                        <div style="background: #2196F3; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">Năm 11-30</div>
+                                        <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                            <strong>Thống lĩnh thị trường</strong><br>
+                                            • Dẫn đầu công nghệ<br>
+                                            • 1000+ khách hàng<br>
+                                            • $32.5M doanh thu<br>
+                                            • <strong>$2M đầu tư</strong>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Năm 31-50 -->
+                                    <div style="text-align: center; width: 18%;">
+                                        <div style="width: 16px; height: 16px; background: #9C27B0; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #9C27B0;"></div>
+                                        <div style="background: #9C27B0; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">Năm 31-50</div>
+                                        <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                            <strong>Bền vững & Di sản</strong><br>
+                                            • Duy trì, nâng cấp định kỳ<br>
+                                            • Chuyển giao thế hệ<br>
+                                            • $58.7M doanh thu<br>
+                                            • <strong>$1M đầu tư</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Cash flow summary -->
+                            <div style="margin-top: 30px; padding: 15px; background: linear-gradient(135deg, rgba(30, 60, 114, 0.1), rgba(255, 215, 0, 0.1)); border-radius: 10px; border: 1px solid #FFD700;">
+                                <div style="text-align: center; color: #1e3c72;">
+                                    <div style="font-weight: bold; font-size: 1.1rem;"> Tổng đầu tư 50 năm: $10M | ROI tích lũy: 487% | Break-even: Năm 7.5</div>
+                                    <div style="font-size: 0.9rem; margin-top: 5px;">Cash flow dương từ năm thứ 3, tự tài trợ mở rộng từ năm thứ 8</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Roadmap & Milestones -->
+        <div class="slide">
+            <div class="slide-number">10</div>
+            <div class="slide-header">
+                <h2>ROADMAP PHÁT TRIỂN 4 GIAI ĐOẠN</h2>
+            </div>
+            
+            <div class="slide-content">
+                <h2>ROADMAP PHÁT TRIỂN 4 GIAI ĐOẠN</h2>
+                
+                <!-- 4 Phases in horizontal layout -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0;">
+                    
+                    <!-- Giai đoạn 1 -->
+                    <div style="background: linear-gradient(135deg, #FF5722, #FF7043); color: white; padding: 20px; border-radius: 15px; border: 3px solid white; box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 1.3rem; font-weight: bold;"> Giai đoạn 1</div>
+                            <div style="font-size: 1rem;">(2025-2027)</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 5px;"> Foundation & Market Entry</div>
+                        </div>
+                        <div style="font-size: 0.8rem; line-height: 1.4;">
+                            <div>• Q1 2025: Hoàn tất mua lại Tohin factory</div>
+                            <div>• Q2 2025: Triển khai dây chuyền SMT</div>
+                            <div>• Q4 2025: Ra mắt IoT Gateway MK-100</div>
+                            <div>• 2026: Đạt 50 khách hàng, $1.5M doanh thu</div>
+                            <div>• 2027: Thâm nhập 15% thị trường miền Nam</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Giai đoạn 2 -->
+                    <div style="background: linear-gradient(135deg, #FF9800, #FFB74D); color: white; padding: 20px; border-radius: 15px; border: 3px solid white; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 1.3rem; font-weight: bold;"> Giai đoạn 2</div>
+                            <div style="font-size: 1rem;">(2027-2030)</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 5px;"> Growth & AMR Development</div>
+                        </div>
+                        <div style="font-size: 0.8rem; line-height: 1.4;">
+                            <div>• 2027: Phát triển Robot AMR-100</div>
+                            <div>• 2028: Mở rộng ra miền Trung, miền Bắc</div>
+                            <div>• 2029: Ra mắt IoT Gateway MK-200 Pro</div>
+                            <div>• 2030: 200 khách hàng, $8M doanh thu</div>
+                            <div>• 2030: Xuất khẩu đầu tiên sang Thailand</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Giai đoạn 3 -->
+                    <div style="background: linear-gradient(135deg, #4CAF50, #81C784); color: white; padding: 20px; border-radius: 15px; border: 3px solid white; box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 1.3rem; font-weight: bold;"> Giai đoạn 3</div>
+                            <div style="font-size: 1rem;">(2030-2040)</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 5px;"> Regional Expansion</div>
+                        </div>
+                        <div style="font-size: 0.8rem; line-height: 1.4;">
+                            <div>• 2032: Mở nhà máy thứ 2 tại Đà Nẵng</div>
+                            <div>• 2035: Top 3 nhà sản xuất IoT Việt Nam</div>
+                            <div>• 2037: Xuất khẩu 8 nước ASEAN</div>
+                            <div>• 2040: 500 khách hàng, $25M doanh thu</div>
+                            <div>• 2040: IPO tại HOSE hoặc NASDAQ</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Giai đoạn 4 -->
+                    <div style="background: linear-gradient(135deg, #2196F3, #64B5F6); color: white; padding: 20px; border-radius: 15px; border: 3px solid white; box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);">
+                        <div style="text-align: center; margin-bottom: 15px;">
+                            <div style="font-size: 1.3rem; font-weight: bold;"> Giai đoạn 4</div>
+                            <div style="font-size: 1rem;">(2040-2075)</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 5px;"> Global Leadership</div>
+                        </div>
+                        <div style="font-size: 0.8rem; line-height: 1.4;">
+                            <div>• 2045: Mở rộng sang thị trường Ấn Độ</div>
+                            <div>• 2050: Top 10 toàn cầu trong AMR</div>
+                            <div>• 2060: Công nghệ AI autonomous systems</div>
+                            <div>• 2070: 1000+ khách hàng toàn cầu</div>
+                            <div>• 2075: Legacy technology transfer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key metrics -->
+                <div style="display: flex; justify-content: center; gap: 30px; margin: 30px 0;">
+                    <div style="text-align: center; background: white; padding: 15px 25px; border-radius: 15px; border: 2px solid #4CAF50; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2rem; font-weight: bold; color: #4CAF50;">4</div>
+                        <div style="color: #1e3c72; font-weight: bold;">Giai đoạn phát triển</div>
+                    </div>
+                    <div style="text-align: center; background: white; padding: 15px 25px; border-radius: 15px; border: 2px solid #FF9800; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2rem; font-weight: bold; color: #FF9800;">20</div>
+                        <div style="color: #1e3c72; font-weight: bold;">Milestone chính</div>
+                    </div>
+                    <div style="text-align: center; background: white; padding: 15px 25px; border-radius: 15px; border: 2px solid #2196F3; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 2rem; font-weight: bold; color: #2196F3;">50</div>
+                        <div style="color: #1e3c72; font-weight: bold;">Năm hoạt động</div>
+                    </div>
+                </div>
+                
+                <!-- Product Development Roadmap -->
+                <div style="background: white; padding: 25px; border-radius: 15px; border: 2px solid #FFD700; margin: 20px 0;">
+                    <h4 style="color: #1e3c72; text-align: center; margin-bottom: 20px;"> Roadmap Phát triển Sản phẩm</h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        
+                        <!-- IoT Gateway Roadmap -->
+                        <div style="background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.2)); padding: 20px; border-radius: 12px; border: 2px solid #64FFDA;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 1.2rem; font-weight: bold; color: #1e3c72;"> IoT Gateway Evolution</div>
+                            </div>
+                            <div style="color: #1e3c72; font-size: 0.85rem; line-height: 1.5;">
+                                <div style="margin-bottom: 8px;"><strong>2025-2027:</strong> MK-100 Basic (ARM A55, 4GB)</div>
+                                <div style="margin-bottom: 8px;"><strong>2027-2032:</strong> MK-200 Pro (ARM A78, 8GB, 5G)</div>
+                                <div style="margin-bottom: 8px;"><strong>2032-2040:</strong> MK-300 Enterprise (AI Edge 10+ TOPS)</div>
+                                <div style="margin-bottom: 8px;"><strong>2040-2055:</strong> MK-400 Autonomous (Quantum computing)</div>
+                                <div><strong>2055-2075:</strong> MK-500 Molecular IoT</div>
+                            </div>
+                        </div>
+                        
+                        <!-- AMR Robot Roadmap -->
+                        <div style="background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 193, 7, 0.2)); padding: 20px; border-radius: 12px; border: 2px solid #FFC107;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 1.2rem; font-weight: bold; color: #1e3c72;"> AMR Robot Series</div>
+                            </div>
+                            <div style="color: #1e3c72; font-size: 0.85rem; line-height: 1.5;">
+                                <div style="margin-bottom: 8px;"><strong>2027-2030:</strong> AMR-100 Light (100kg, 2D LiDAR)</div>
+                                <div style="margin-bottom: 8px;"><strong>2030-2035:</strong> AMR-500 Medium (500kg, 3D LiDAR + AI)</div>
+                                <div style="margin-bottom: 8px;"><strong>2035-2045:</strong> AMR-1000 Heavy (1000kg, Advanced Nav)</div>
+                                <div style="margin-bottom: 8px;"><strong>2045-2060:</strong> AMR-2000 Cognitive (AI decision making)</div>
+                                <div><strong>2060-2075:</strong> Autonomous Factory Systems</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Market Evolution -->
+                        <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(156, 39, 176, 0.2)); padding: 20px; border-radius: 12px; border: 2px solid #9C27B0;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 1.2rem; font-weight: bold; color: #1e3c72;"> Thị trường Mục tiêu</div>
+                            </div>
+                            <div style="color: #1e3c72; font-size: 0.85rem; line-height: 1.5;">
+                                <div style="margin-bottom: 8px;"><strong>2025-2027:</strong> Miền Nam Việt Nam (1% market share)</div>
+                                <div style="margin-bottom: 8px;"><strong>2027-2032:</strong> Toàn quốc Việt Nam (5% market share)</div>
+                                <div style="margin-bottom: 8px;"><strong>2032-2040:</strong> ASEAN (Thailand, Malaysia, Philippines)</div>
+                                <div style="margin-bottom: 8px;"><strong>2040-2055:</strong> Châu Á (Ấn Độ, Indonesia)</div>
+                                <div><strong>2055-2075:</strong> Global expansion (Europe, Americas)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                        <div style="font-weight: bold; color: #1e3c72; font-size: 1.1rem;"> Mục tiêu: Trở thành nhà sản xuất IoT & AMR hàng đầu Đông Nam Á</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Đội ngũ & Đối tác -->
+        <div class="slide">
+            <div class="slide-number">11</div>
+            <div class="slide-header">
+                <h2>ĐỘI NGŨ QUẢN LÝ & ĐỐI TÁC CHIẾN LƯỢC</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid two-column">
+                    <div class="team-card">
+                        <h3> Đội ngũ lãnh đạo chính</h3>
+                        <div class="timeline-item">
+                            <strong>CEO - Nguyễn Văn A</strong><br>
+                            <span class="very-small-text">15 năm kinh nghiệm IoT, cựu Samsung Vietnam</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>CTO - Trần Thị B</strong><br>
+                            <span class="very-small-text">PhD Robotics, 12 năm R&D tại Bosch</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>COO - Lê Văn C</strong><br>
+                            <span class="very-small-text">MBA Operations, cựu Intel Vietnam</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>CFO - Phạm Thị D</strong><br>
+                            <span class="very-small-text">CPA, 10 năm tài chính doanh nghiệp</span>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <h3> Cố vấn & Hội đồng quản trị</h3>
+                        <div class="timeline-item">
+                            <strong>Board Chairman</strong><br>
+                            <span class="very-small-text">Cựu Thứ trưởng Bộ KH&CN</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Technology Advisor</strong><br>
+                            <span class="very-small-text">Professor MIT, IoT Expert</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Market Advisor</strong><br>
+                            <span class="very-small-text">Cựu Country Manager ASEAN</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Legal Counsel</strong><br>
+                            <span class="very-small-text">Baker McKenzie Vietnam</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Hệ sinh thái Đối tác Chiến lược</h4>
+                    <div class="system-architecture">
+                        
+                        <!-- MEKONG HUB ở trung tâm -->
+                        <div style="text-align: center; margin: 20px 0;">
+                            <div class="layer-box" style="background: rgba(255, 215, 0, 0.3); border: 3px solid #FFD700; padding: 20px;">
+                                <div style="font-size: 1.5rem; font-weight: bold; color: #1e3c72;">
+                                     MEKONG TECH HUB<br>
+                                    <small>Trung tâm Hệ sinh thái</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 4 nhóm đối tác xung quanh -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                            
+                            <!-- Technology Partners -->
+                            <div class="layer-box" style="background: rgba(63, 81, 181, 0.2); border-color: #3F51B5;">
+                                <div style="text-align: center;">
+                                    <div><strong> Đối tác Công nghệ</strong></div>
+                                    <div class="very-small-text" style="margin-top: 10px;">
+                                        <div><strong>ARM Holdings</strong> - Processor IP</div>
+                                        <div><strong>NVIDIA</strong> - AI Computing</div>
+                                        <div><strong>Bosch</strong> - Sensors & Safety</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Academic Partners -->
+                            <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50;">
+                                <div style="text-align: center;">
+                                    <div><strong> Đối tác Học thuật</strong></div>
+                                    <div class="very-small-text" style="margin-top: 10px;">
+                                        <div><strong>ĐH Bách Khoa TP.HCM</strong> - IoT Research Lab</div>
+                                        <div><strong>ĐH Quốc gia TP.HCM</strong> - AI/ML Center</div>
+                                        <div><strong>ĐH Cần Thơ</strong> - Automation Lab</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Government Support -->
+                            <div class="layer-box" style="background: rgba(255, 87, 34, 0.2); border-color: #FF5722;">
+                                <div style="text-align: center;">
+                                    <div><strong> Hỗ trợ Chính phủ</strong></div>
+                                    <div class="very-small-text" style="margin-top: 10px;">
+                                        <div><strong>Bộ KH&CN</strong> - Chương trình Công nghệ cao</div>
+                                        <div><strong>UBND TP.HCM</strong> - Hỗ trợ Đầu tư</div>
+                                        <div><strong>Ban Quản lý</strong> - Khu CNC TP.HCM</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Market Partners -->
+                            <div class="layer-box" style="background: rgba(156, 39, 176, 0.2); border-color: #9C27B0;">
+                                <div style="text-align: center;">
+                                    <div><strong> Đối tác Thị trường</strong></div>
+                                    <div class="very-small-text" style="margin-top: 10px;">
+                                        <div><strong>Samsung Vietnam</strong> - Khách hàng thí điểm</div>
+                                        <div><strong>Intel Vietnam</strong> - Chuyển giao công nghệ</div>
+                                        <div><strong>200+ SME</strong> - Đối tác sản xuất</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Kết nối -->
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;">
+                            <div style="text-align: center; font-size: 1.5rem;"></div>
+                            <div style="text-align: center; font-size: 1.5rem;"></div>
+                            <div style="text-align: center; font-size: 1.5rem;"></div>
+                            <div style="text-align: center; font-size: 1.5rem;"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">15+</div>
+                        <div class="metric-label">Đối tác công nghệ</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">5</div>
+                        <div class="metric-label">Trường đại học</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">3</div>
+                        <div class="metric-label">Cơ quan chính phủ</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">200+</div>
+                        <div class="metric-label">Khách hàng tiềm năng</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: ESG & Sustainability -->
+        <div class="slide">
+            <div class="slide-number">12</div>
+            <div class="slide-header">
+                <h2>ESG & PHÁT TRIỂN BỀN VỮNG</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid three-column">
+                    <div class="esg-card">
+                        <h3> Environmental</h3>
+                        <h4>Cam kết môi trường</h4>
+                        <ul class="very-small-text">
+                            <li>Carbon neutral đến 2035</li>
+                            <li>100% năng lượng tái tạo đến 2030</li>
+                            <li>Giảm 50% nước thải công nghiệp</li>
+                            <li>Tái chế 90% chất thải sản xuất</li>
+                            <li>Green building LEED Gold</li>
+                        </ul>
+                    </div>
+                    <div class="esg-card">
+                        <h3> Social</h3>
+                        <h4>Trách nhiệm xã hội</h4>
+                        <ul class="very-small-text">
+                            <li>200 việc làm chất lượng cao</li>
+                            <li>80% tuyển dụng địa phương</li>
+                            <li>40h đào tạo/nhân viên/năm</li>
+                            <li>30% lao động nữ trong STEM</li>
+                            <li>Hỗ trợ 1,000 SME số hóa</li>
+                        </ul>
+                    </div>
+                    <div class="esg-card">
+                        <h3> Governance</h3>
+                        <h4>Quản trị minh bạch</h4>
+                        <ul class="very-small-text">
+                            <li>Board độc lập 60%</li>
+                            <li>Audit thường xuyên</li>
+                            <li>Compliance 100% quy định</li>
+                            <li>Báo cáo ESG hàng quý</li>
+                            <li>Anti-corruption policy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Lộ trình ESG 2025-2030</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #4CAF50;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Cam kết Phát triển Bền vững 5 năm</h5>
+                        
+                        <!-- ESG Timeline -->
+                        <div style="position: relative; padding: 20px 0;">
+                            <!-- Timeline line -->
+                            <div style="position: absolute; top: 50px; left: 10%; right: 10%; height: 4px; background: linear-gradient(to right, #4CAF50, #8BC34A, #CDDC39, #FFC107, #FF9800); border-radius: 2px;"></div>
+                            
+                            <!-- Timeline milestones -->
+                            <div style="display: flex; justify-content: space-between; padding: 0 10%; position: relative;">
+                                
+                                <!-- 2025 -->
+                                <div style="text-align: center; width: 18%;">
+                                    <div style="width: 16px; height: 16px; background: #4CAF50; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #4CAF50;"></div>
+                                    <div style="background: #4CAF50; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">2025</div>
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                        <strong>Khởi đầu ESG</strong><br>
+                                        • ISO 14001<br>
+                                        • Carbon baseline<br>
+                                        • 20% nữ lãnh đạo
+                                    </div>
+                                </div>
+                                
+                                <!-- 2026 -->
+                                <div style="text-align: center; width: 18%;">
+                                    <div style="width: 16px; height: 16px; background: #8BC34A; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #8BC34A;"></div>
+                                    <div style="background: #8BC34A; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">2026</div>
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                        <strong>Tiết kiệm năng lượng</strong><br>
+                                        • Giảm CO₂ 20%<br>
+                                        • 100 việc làm địa phương<br>
+                                        • SME partners 500
+                                    </div>
+                                </div>
+                                
+                                <!-- 2027 -->
+                                <div style="text-align: center; width: 18%;">
+                                    <div style="width: 16px; height: 16px; background: #CDDC39; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #CDDC39;"></div>
+                                    <div style="background: #CDDC39; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">2027</div>
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                        <strong>Năng lượng tái tạo</strong><br>
+                                        • 50% solar power<br>
+                                        • Zero waste<br>
+                                        • 5,000h đào tạo
+                                    </div>
+                                </div>
+                                
+                                <!-- 2028 -->
+                                <div style="text-align: center; width: 18%;">
+                                    <div style="width: 16px; height: 16px; background: #FFC107; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FFC107;"></div>
+                                    <div style="background: #FFC107; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">2028</div>
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                        <strong>Chứng nhận LEED</strong><br>
+                                        • Gold Building<br>
+                                        • 30% nữ leadership<br>
+                                        • B-Corp candidate
+                                    </div>
+                                </div>
+                                
+                                <!-- 2030 -->
+                                <div style="text-align: center; width: 18%;">
+                                    <div style="width: 16px; height: 16px; background: #FF9800; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FF9800;"></div>
+                                    <div style="background: #FF9800; color: white; padding: 8px; border-radius: 8px; margin-bottom: 10px; font-weight: bold; font-size: 0.85rem;">2030</div>
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                        <strong>Carbon Neutral</strong><br>
+                                        • Net Zero đạt được<br>
+                                        • UN Global Compact<br>
+                                        • ESG leader ASEAN
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ESG Summary -->
+                        <div style="margin-top: 30px; padding: 15px; background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(255, 193, 7, 0.1)); border-radius: 10px; border: 1px solid #4CAF50;">
+                            <div style="text-align: center; color: #1e3c72;">
+                                <div style="font-weight: bold; font-size: 1.1rem;"> Mục tiêu: Trở thành doanh nghiệp công nghệ xanh hàng đầu Việt Nam</div>
+                                <div style="font-size: 0.9rem; margin-top: 5px;">Đóng góp tích cực cho UN SDGs và Paris Agreement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="esg-card">
+                        <h4> Tác động tích cực</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Chỉ số</th><th>Mục tiêu 2030</th></tr>
+                            <tr><td>CO₂ reduction</td><td>-75%</td></tr>
+                            <tr><td>Local jobs</td><td>200 người</td></tr>
+                            <tr><td>Female leadership</td><td>40%</td></tr>
+                            <tr><td>SME partners</td><td>1,000 DN</td></tr>
+                            <tr><td>Training hours</td><td>8,000h/năm</td></tr>
+                        </table>
+                    </div>
+                    <div class="esg-card">
+                        <h4> Chứng nhận & Tiêu chuẩn</h4>
+                        <ul class="very-small-text">
+                            <li> ISO 14001 (Environmental)</li>
+                            <li> ISO 45001 (Safety)</li>
+                            <li>⏳ LEED Gold Building</li>
+                            <li>⏳ B-Corp Certification</li>
+                            <li>⏳ UN Global Compact</li>
+                            <li>⏳ Carbon Trust Standard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Case Studies -->
+        <div class="slide">
+            <div class="slide-number">13</div>
+            <div class="slide-header">
+                <h2>CASE STUDIES & VALIDATION</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="content-grid three-column">
+                    <div class="case-study-card">
+                        <h4> Samsung Vietnam</h4>
+                        <p><strong>Vấn đề:</strong> Kiểm soát chất lượng thủ công, tỷ lệ lỗi 15%</p>
+                        <p><strong>Giải pháp:</strong> Cảm biến IoT + Phân tích AI</p>
+                        <p><strong>Kết quả:</strong> Tỷ lệ lỗi 5%, giảm 30% chi phí</p>
+                        <p class="highlight very-small-text">Tiềm năng: 500+ nhà máy tương tự</p>
+                    </div>
+                    <div class="case-study-card">
+                        <h4> VinFast Auto</h4>
+                        <p><strong>Vấn đề:</strong> Tắc nghẽn logistics, 20% thời gian chết</p>
+                        <p><strong>Giải pháp:</strong> Đội robot AMR</p>
+                        <p><strong>Kết quả:</strong> 5% thời gian chết, luồng vật liệu nhanh hơn 40%</p>
+                        <p class="highlight very-small-text">Tiềm năng: 200+ nhà máy ô tô</p>
+                    </div>
+                    <div class="case-study-card">
+                        <h4> Phenikaa-X</h4>
+                        <p><strong>Vấn đề:</strong> Khả năng R&D hạn chế</p>
+                        <p><strong>Giải pháp:</strong> Đối tác công nghệ</p>
+                        <p><strong>Kết quả:</strong> Ra mắt 3 sản phẩm IoT mới</p>
+                        <p class="highlight very-small-text">Tiềm năng: 50+ startup công nghệ</p>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Ma trận Xác thực Thị trường</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Cơ hội Thị trường vs Khả năng Triển khai</h5>
+                        
+                        <!-- Quadrant Chart -->
+                        <div style="position: relative; width: 100%; height: 400px; border: 2px solid #1e3c72; background: linear-gradient(45deg, rgba(255,87,34,0.1), rgba(76,175,80,0.1), rgba(33,150,243,0.1), rgba(156,39,176,0.1));">
+                            
+                            <!-- Axes -->
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #1e3c72;"></div>
+                            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #1e3c72;"></div>
+                            
+                            <!-- Axis Labels -->
+                            <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #1e3c72; font-weight: bold;"> Khả năng Triển khai cao</div>
+                            <div style="position: absolute; top: 10px; left: 10px; color: #1e3c72; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed;"> Cơ hội Thị trường lớn</div>
+                            
+                            <!-- Quadrant Labels -->
+                            <div style="position: absolute; top: 15%; left: 15%; color: #FF5722; font-weight: bold; font-size: 0.9rem;">Fill-ins<br><small>Thị trường thích hợp</small></div>
+                            <div style="position: absolute; top: 15%; right: 15%; color: #4CAF50; font-weight: bold; font-size: 0.9rem;">Quick Wins<br><small>Triển khai ngay</small></div>
+                            <div style="position: absolute; bottom: 15%; left: 15%; color: #9C27B0; font-weight: bold; font-size: 0.9rem;">Major Projects<br><small>Dự án lớn</small></div>
+                            <div style="position: absolute; bottom: 15%; right: 15%; color: #2196F3; font-weight: bold; font-size: 0.9rem;">Strategic Bets<br><small>Chiến lược dài hạn</small></div>
+                            
+                            <!-- Data Points -->
+                            <!-- IoT Gateway Basic -->
+                            <div style="position: absolute; top: 30%; right: 20%; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 35%; right: 15%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">IoT Gateway Cơ bản</div>
+                            
+                            <!-- AMR Light -->
+                            <div style="position: absolute; top: 45%; right: 35%; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 50%; right: 30%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">AMR Nhẹ</div>
+                            
+                            <!-- Smart Factory -->
+                            <div style="position: absolute; top: 25%; left: 25%; width: 12px; height: 12px; background: #FF5722; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 30%; left: 20%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Smart Factory</div>
+                            
+                            <!-- Enterprise IoT -->
+                            <div style="position: absolute; top: 20%; right: 30%; width: 12px; height: 12px; background: #2196F3; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 15%; right: 25%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">IoT Doanh nghiệp</div>
+                            
+                            <!-- AI Robotics -->
+                            <div style="position: absolute; top: 65%; right: 25%; width: 12px; height: 12px; background: #9C27B0; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 70%; right: 20%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">AI Robotics</div>
+                            
+                            <!-- Integration Services -->
+                            <div style="position: absolute; top: 55%; right: 40%; width: 12px; height: 12px; background: #FF9800; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 60%; right: 35%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Dịch vụ Tích hợp</div>
+                        </div>
+                        
+                        <!-- Legend -->
+                        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #4CAF50; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Quick Wins - Ưu tiên cao</span></div>
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #2196F3; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Strategic Bets - Dài hạn</span></div>
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #FF5722; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Fill-ins - Thích hợp</span></div>
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #9C27B0; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Major Projects - Lớn</span></div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <div style="font-weight: bold; color: #1e3c72; font-size: 1.1rem;"> Chiến lược: Tập trung Quick Wins trước, sau đó mở rộng Strategic Bets</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="case-study-card">
+                        <h4> Bằng chứng Hỗ trợ Chính phủ</h4>
+                        <ul class="very-small-text">
+                            <li><strong>Chương trình Chuyển đổi số Quốc gia:</strong> Ngân sách 1.2 tỷ USD</li>
+                            <li><strong>Chương trình Công nghiệp 4.0:</strong> Lĩnh vực ưu tiên</li>
+                            <li><strong>HCMC Smart City:</strong> Cơ sở hạ tầng IoT</li>
+                            <li><strong>Hiệp định EVFTA:</strong> Ưu thế xuất khẩu</li>
+                            <li><strong>Ưu đãi High-tech:</strong> Thuế suất 10% trong 15 năm</li>
+                        </ul>
+                    </div>
+                    <div class="case-study-card">
+                        <h4> Chỉ số Thu hút Thị trường</h4>
+                        <ul class="very-small-text">
+                            <li><strong>Tín hiệu IoT:</strong> 15 khách hàng lớn</li>
+                            <li><strong>Dự án thí điểm:</strong> 5 dự án đã xác nhận</li>
+                            <li><strong>Đơn đặt hàng trước:</strong> 2 triệu USD cam kết</li>
+                            <li><strong>Quan hệ đối tác công nghệ:</strong> 5 đã ký kết</li>
+                            <li><strong>Quan tâm đầu tư:</strong> 3 VC đã tham gia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Competitive Analysis -->
+        <div class="slide">
+            <div class="slide-number">14</div>
+            <div class="slide-header">
+                <h2>PHÂN TÍCH CẠNH TRANH CHI TIẾT</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Bản đồ Cạnh tranh Thị trường</h4>
+                    <div class="mermaid">
+                        quadrantChart
+                            title Competitive Landscape: Price vs Technology
+                            x-axis Low Price --> High Price
+                            y-axis Low Technology --> High Technology
+                            quadrant-1 Premium Leaders
+                            quadrant-2 Innovation Leaders  
+                            quadrant-3 Cost Players
+                            quadrant-4 Value Players
+                            
+                            Schneider Electric: [0.9, 0.9]
+                            Siemens: [0.9, 0.95]
+                            ABB: [0.85, 0.85]
+                            Omron: [0.75, 0.8]
+                            Local Competitors: [0.3, 0.4]
+                            Chinese Brands: [0.25, 0.5]
+                            MEKONG TECH: [0.5, 0.75]
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="competitive-card">
+                        <h4> Lợi thế cạnh tranh của Mekong</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Yếu tố</th><th>Mekong</th><th>Đối thủ quốc tế</th></tr>
+                            <tr><td>Giá thành</td><td class="highlight">-40%</td><td>Premium</td></tr>
+                            <tr><td>Customization</td><td class="highlight">Nhanh</td><td>Chậm</td></tr>
+                            <tr><td>Local support</td><td class="highlight">24/7</td><td>Limited</td></tr>
+                            <tr><td>Integration</td><td class="highlight">Turnkey</td><td>Partial</td></tr>
+                            <tr><td>Market knowledge</td><td class="highlight">Deep</td><td>Surface</td></tr>
+                        </table>
+                    </div>
+                    <div class="competitive-card">
+                        <h4> Thách thức & Đối phó</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Thách thức</th><th>Chiến lược đối phó</th></tr>
+                            <tr><td>Brand recognition</td><td>Partnership + PR</td></tr>
+                            <tr><td>Technology gap</td><td>R&D investment</td></tr>
+                            <tr><td>Capital limitation</td><td>Phase development</td></tr>
+                            <tr><td>Talent acquisition</td><td>University partnership</td></tr>
+                            <tr><td>Scale disadvantage</td><td>Niche specialization</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Dự báo Phát triển Thị phần</h4>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">Thị phần IoT Gateway Việt Nam (%)</h5>
+                        <div style="display: flex; align-items: end; justify-content: space-around; height: 200px; border-bottom: 2px solid #1e3c72; border-left: 2px solid #1e3c72; padding: 0 20px; position: relative;">
+                            
+                            <!-- Y-axis labels -->
+                            <div style="position: absolute; left: -30px; top: 0; height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; color: #1e3c72; font-weight: bold; font-size: 0.8rem;">
+                                <div>0</div>
+                                <div>5</div>
+                                <div>10</div>
+                                <div>15</div>
+                                <div>20</div>
+                            </div>
+                            
+                            <!-- 2025 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 60px;">
+                                <div style="background: linear-gradient(to top, #FFD700, #FFF176); height: 10px; width: 40px; border-radius: 3px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.7rem;">1%</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2025</div>
+                            </div>
+                            
+                            <!-- 2027 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 60px;">
+                                <div style="background: linear-gradient(to top, #FFD700, #FFF176); height: 30px; width: 40px; border-radius: 3px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.7rem;">3%</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2027</div>
+                            </div>
+                            
+                            <!-- 2030 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 60px;">
+                                <div style="background: linear-gradient(to top, #FFD700, #FFF176); height: 80px; width: 40px; border-radius: 3px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.7rem;">8%</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2030</div>
+                            </div>
+                            
+                            <!-- 2035 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 60px;">
+                                <div style="background: linear-gradient(to top, #FFD700, #FFF176); height: 120px; width: 40px; border-radius: 3px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.7rem;">12%</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2035</div>
+                            </div>
+                            
+                            <!-- 2040 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 60px;">
+                                <div style="background: linear-gradient(to top, #FFD700, #FFF176); height: 150px; width: 40px; border-radius: 3px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.7rem;">15%</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2040</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px; color: #1e3c72;">
+                            <div style="font-weight: bold; font-size: 1rem;"> Tăng trưởng từ 1% → 15% trong 15 năm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">40%</div>
+                        <div class="metric-label">Lợi thế chi phí</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">15%</div>
+                        <div class="metric-label">Thị phần mục tiêu 2040</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">3-5x</div>
+                        <div class="metric-label">Tùy chỉnh nhanh hơn</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">24/7</div>
+                        <div class="metric-label">Hỗ trợ địa phương</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Financial Projections -->
+        <div class="slide">
+            <div class="slide-number">15</div>
+            <div class="slide-header">
+                <h2>DỰ BÁO TÀI CHÍNH CHI TIẾT</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">18.5%</div>
+                        <div class="metric-label">IRR (50 năm)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">$45.2M</div>
+                        <div class="metric-label">NPV @ 12%</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">7.5 yrs</div>
+                        <div class="metric-label">Payback Period</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">65%</div>
+                        <div class="metric-label">Gross Margin năm 10</div>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Dự báo Doanh thu & Lợi nhuận (10 năm đầu)</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">Doanh thu theo năm (Triệu USD)</h5>
+                        <div style="display: flex; align-items: end; justify-content: space-around; height: 250px; border-bottom: 2px solid #1e3c72; border-left: 2px solid #1e3c72; padding: 0 20px; position: relative;">
+                            
+                            <!-- Y-axis labels -->
+                            <div style="position: absolute; left: -30px; top: 0; height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; color: #1e3c72; font-weight: bold; font-size: 0.8rem;">
+                                <div>0</div>
+                                <div>2</div>
+                                <div>4</div>
+                                <div>6</div>
+                                <div>8</div>
+                                <div>10</div>
+                            </div>
+                            
+                            <!-- Year 1 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #FF5722, #FF7043); height: 5px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">0.2</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y1</div>
+                            </div>
+                            
+                            <!-- Year 2 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #FF7043, #FF8A65); height: 20px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">0.8</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y2</div>
+                            </div>
+                            
+                            <!-- Year 3 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #FF9800, #FFB74D); height: 37px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">1.5</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y3</div>
+                            </div>
+                            
+                            <!-- Year 4 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #FFC107, #FFEB3B); height: 57px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: #1e3c72; font-weight: bold; font-size: 0.6rem;">2.3</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y4</div>
+                            </div>
+                            
+                            <!-- Year 5 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #8BC34A, #AED581); height: 80px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">3.2</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y5</div>
+                            </div>
+                            
+                            <!-- Year 6 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #4CAF50, #81C784); height: 112px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">4.5</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y6</div>
+                            </div>
+                            
+                            <!-- Year 7 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #00BCD4, #4DD0E1); height: 145px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">5.8</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y7</div>
+                            </div>
+                            
+                            <!-- Year 8 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #2196F3, #64B5F6); height: 180px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">7.2</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y8</div>
+                            </div>
+                            
+                            <!-- Year 9 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #3F51B5, #7986CB); height: 222px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">8.9</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y9</div>
+                            </div>
+                            
+                            <!-- Year 10 -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 45px;">
+                                <div style="background: linear-gradient(to top, #9C27B0, #BA68C8); height: 250px; width: 35px; border-radius: 3px; margin-bottom: 8px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.6rem;">10.5</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.7rem;">Y10</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px; color: #1e3c72;">
+                            <div style="font-weight: bold; font-size: 1rem;"> Tăng trưởng 50x trong 10 năm đầu ($0.2M → $10.5M)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="chart-container">
+                        <h4> Phân tích Doanh thu theo Sản phẩm (Năm 10)</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Dòng sản phẩm</th><th>Doanh thu</th><th>%</th></tr>
+                            <tr><td>IoT Gateway Cơ bản</td><td>$3.2M</td><td>30%</td></tr>
+                            <tr><td>IoT Gateway Chuyên nghiệp</td><td>$2.8M</td><td>27%</td></tr>
+                            <tr><td>Robot AMR</td><td>$3.5M</td><td>33%</td></tr>
+                            <tr><td>Dịch vụ Tích hợp</td><td>$1.0M</td><td>10%</td></tr>
+                            <tr><td><strong>Tổng cộng</strong></td><td><strong>$10.5M</strong></td><td><strong>100%</strong></td></tr>
+                        </table>
+                    </div>
+                    <div class="chart-container">
+                        <h4> Chỉ số Tài chính Chính</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Chỉ số</th><th>Năm 5</th><th>Năm 10</th></tr>
+                            <tr><td>Lợi nhuận gộp</td><td>55%</td><td>65%</td></tr>
+                            <tr><td>Lợi nhuận EBITDA</td><td>25%</td><td>40%</td></tr>
+                            <tr><td>ROE</td><td>15%</td><td>28%</td></tr>
+                            <tr><td>ROA</td><td>12%</td><td>22%</td></tr>
+                            <tr><td>Vòng quay tài sản</td><td>0.8x</td><td>1.2x</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Phân tích Độ nhạy Lợi nhuận Đầu tư</h4>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">NPV theo Tỷ lệ Tăng trưởng Doanh thu</h5>
+                        <div style="display: flex; align-items: end; justify-content: space-around; height: 200px; border-bottom: 2px solid #1e3c72; border-left: 2px solid #1e3c72; padding: 0 20px; position: relative;">
+                            
+                            <!-- Y-axis labels -->
+                            <div style="position: absolute; left: -30px; top: 0; height: 100%; display: flex; flex-direction: column-reverse; justify-content: space-between; color: #1e3c72; font-weight: bold; font-size: 0.8rem;">
+                                <div>0</div>
+                                <div>20</div>
+                                <div>40</div>
+                                <div>60</div>
+                                <div>80</div>
+                            </div>
+                            
+                            <!-- Conservative -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 120px;">
+                                <div style="background: linear-gradient(to top, #FF5722, #FF7043); height: 71px; width: 80px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; padding-bottom: 5px;">$28.5M</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem; text-align: center;">Thận trọng<br><small>(-20%)</small></div>
+                            </div>
+                            
+                            <!-- Base Case -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 120px;">
+                                <div style="background: linear-gradient(to top, #4CAF50, #81C784); height: 113px; width: 80px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; padding-bottom: 5px;">$45.2M</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem; text-align: center;">Cơ sở<br><small>(Base)</small></div>
+                            </div>
+                            
+                            <!-- Optimistic -->
+                            <div style="display: flex; flex-direction: column; align-items: center; width: 120px;">
+                                <div style="background: linear-gradient(to top, #2196F3, #64B5F6); height: 172px; width: 80px; border-radius: 5px; margin-bottom: 10px; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem; padding-bottom: 5px;">$68.9M</div>
+                                <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem; text-align: center;">Lạc quan<br><small>(+20%)</small></div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px; color: #1e3c72;">
+                            <div style="font-weight: bold; font-size: 1rem;"> NPV vẫn dương ngay cả trong trường hợp thận trọng nhất</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Giả định Tài chính</h4>
+                    <ul class="very-small-text">
+                        <li><strong>CAGR Doanh thu:</strong> 35% (Năm 1-5), 25% (Năm 6-10), 15% (Năm 11+)</li>
+                        <li><strong>Lợi nhuận gộp:</strong> Tăng từ 45% lên 65% trong 10 năm</li>
+                        <li><strong>Chi phí hoạt động:</strong> 35% doanh thu, đạt hiệu quả quy mô</li>
+                        <li><strong>CAPEX:</strong> 5% doanh thu cho bảo trì & mở rộng</li>
+                        <li><strong>Thuế suất:</strong> 10% (ưu đãi công nghệ cao) trong 15 năm đầu</li>
+                        <li><strong>Tỷ lệ chiết khấu:</strong> 12% (WACC cho công ty công nghệ Việt Nam)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Risk Management -->
+        <div class="slide">
+            <div class="slide-number">16</div>
+            <div class="slide-header">
+                <h2>QUẢN LÝ RỦI RO & GIẢM THIỂU</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Ma trận Rủi ro & Giảm thiểu</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Ma trận Đánh giá Rủi ro</h5>
+                        
+                        <!-- Risk Quadrant -->
+                        <div style="position: relative; width: 100%; height: 400px; border: 2px solid #1e3c72; background: linear-gradient(45deg, rgba(255,87,34,0.05), rgba(76,175,80,0.05), rgba(33,150,243,0.05), rgba(156,39,176,0.05));">
+                            
+                            <!-- Axes -->
+                            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #1e3c72;"></div>
+                            <div style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: #1e3c72;"></div>
+                            
+                            <!-- Axis Labels -->
+                            <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #1e3c72; font-weight: bold;"> Xác suất cao</div>
+                            <div style="position: absolute; top: 10px; left: 10px; color: #1e3c72; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed;"> Tác động lớn</div>
+                            
+                            <!-- Quadrant Labels -->
+                            <div style="position: absolute; top: 10%; left: 10%; color: #FF5722; font-weight: bold; font-size: 0.9rem;">Theo dõi<br><small>Monitor</small></div>
+                            <div style="position: absolute; top: 10%; right: 10%; color: #FF5722; font-weight: bold; font-size: 0.9rem;">Quản lý<br><small>Manage</small></div>
+                            <div style="position: absolute; bottom: 10%; left: 10%; color: #4CAF50; font-weight: bold; font-size: 0.9rem;">Chấp nhận<br><small>Accept</small></div>
+                            <div style="position: absolute; bottom: 10%; right: 10%; color: #9C27B0; font-weight: bold; font-size: 0.9rem;">Giảm thiểu<br><small>Mitigate</small></div>
+                            
+                            <!-- Risk Points -->
+                            <!-- Technology Disruption -->
+                            <div style="position: absolute; top: 10%; left: 40%; width: 12px; height: 12px; background: #FF5722; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 5%; left: 35%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Gián đoạn Công nghệ</div>
+                            
+                            <!-- Market Competition -->
+                            <div style="position: absolute; top: 20%; right: 30%; width: 12px; height: 12px; background: #FF9800; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 15%; right: 25%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Cạnh tranh Thị trường</div>
+                            
+                            <!-- Economic Downturn -->
+                            <div style="position: absolute; top: 30%; right: 40%; width: 12px; height: 12px; background: #FFC107; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 25%; right: 35%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Suy thoái Kinh tế</div>
+                            
+                            <!-- Key Personnel -->
+                            <div style="position: absolute; top: 20%; left: 30%; width: 12px; height: 12px; background: #FF5722; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 15%; left: 25%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Nhân sự Chủ chốt</div>
+                            
+                            <!-- Regulatory Changes -->
+                            <div style="position: absolute; top: 40%; left: 50%; width: 12px; height: 12px; background: #2196F3; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 35%; left: 45%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Thay đổi Quy định</div>
+                            
+                            <!-- Supply Chain -->
+                            <div style="position: absolute; bottom: 50%; right: 40%; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; bottom: 45%; right: 35%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Chuỗi Cung ứng</div>
+                            
+                            <!-- Currency Risk -->
+                            <div style="position: absolute; bottom: 60%; right: 20%; width: 12px; height: 12px; background: #4CAF50; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; bottom: 55%; right: 15%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">Rủi ro Tỷ giá</div>
+                            
+                            <!-- Cybersecurity -->
+                            <div style="position: absolute; top: 30%; left: 50%; width: 12px; height: 12px; background: #2196F3; border-radius: 50%; border: 2px solid white;"></div>
+                            <div style="position: absolute; top: 25%; left: 45%; color: #1e3c72; font-size: 0.7rem; font-weight: bold;">An ninh Mạng</div>
+                        </div>
+                        
+                        <!-- Legend -->
+                        <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #FF5722; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Rủi ro cao - Cần quản lý</span></div>
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #2196F3; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Rủi ro trung bình</span></div>
+                            <div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #4CAF50; border-radius: 50%;"></div><span style="font-size: 0.8rem; color: #1e3c72;">Rủi ro thấp</span></div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <div style="font-weight: bold; color: #1e3c72; font-size: 1.1rem;"> Chiến lược: Tập trung giảm thiểu rủi ro có tác động cao</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid three-column">
+                    <div class="risk-card">
+                        <h4> Rủi ro Ưu tiên Cao</h4>
+                        <div class="timeline-item">
+                            <strong>Technology Disruption</strong><br>
+                            <span class="very-small-text">Mitigation: 3% R&D investment, patent portfolio</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Market Competition</strong><br>
+                            <span class="very-small-text">Mitigation: Customer loyalty, cost leadership</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Key Personnel</strong><br>
+                            <span class="very-small-text">Mitigation: Retention program, succession planning</span>
+                        </div>
+                    </div>
+                    <div class="risk-card">
+                        <h4> Rủi ro Ưu tiên Trung bình</h4>
+                        <div class="timeline-item">
+                            <strong>Economic Downturn</strong><br>
+                            <span class="very-small-text">Mitigation: Diversified portfolio, flexible costs</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Cybersecurity</strong><br>
+                            <span class="very-small-text">Mitigation: ISO 27001, security audits</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Regulatory Changes</strong><br>
+                            <span class="very-small-text">Mitigation: Compliance monitoring, legal buffer</span>
+                        </div>
+                    </div>
+                    <div class="risk-card">
+                        <h4> Biện pháp Bảo vệ Tài chính</h4>
+                        <div class="timeline-item">
+                            <strong>Contingency Fund</strong><br>
+                            <span class="very-small-text">5% of total budget ($500K)</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Insurance Coverage</strong><br>
+                            <span class="very-small-text">$5M liability, business interruption</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Financial Covenants</strong><br>
+                            <span class="very-small-text">Debt service coverage >1.25x</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Business Continuity Plan</h4>
+                    <div class="mermaid">
+                        graph TD
+                            A[Risk Event Detected] --> B{Severity Assessment}
+                            B -->|Low| C[Standard Response]
+                            B -->|Medium| D[Escalation Protocol]
+                            B -->|High| E[Crisis Management]
+                            
+                            C --> F[Monitor & Document]
+                            D --> G[Activate Backup Plans]
+                            E --> H[Emergency Operations]
+                            
+                            F --> I[Recovery]
+                            G --> I
+                            H --> I
+                            
+                            I --> J[Post-Event Analysis]
+                            J --> K[Plan Updates]
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="risk-card">
+                        <h4> Risk Monitoring KPIs</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Risk Category</th><th>KPI</th><th>Threshold</th></tr>
+                            <tr><td>Financial</td><td>Cash Flow</td><td>>3 months operating</td></tr>
+                            <tr><td>Operational</td><td>Quality Rate</td><td>>95%</td></tr>
+                            <tr><td>Market</td><td>Customer Churn</td><td><15%/year</td></tr>
+                            <tr><td>Technology</td><td>R&D Pipeline</td><td>3+ projects active</td></tr>
+                            <tr><td>Compliance</td><td>Audit Score</td><td>>90%</td></tr>
+                        </table>
+                    </div>
+                    <div class="risk-card">
+                        <h4> Scenario Planning</h4>
+                        <ul class="very-small-text">
+                            <li><strong>Worst Case:</strong> 50% revenue reduction plan</li>
+                            <li><strong>Supply Chain Disruption:</strong> 3 alternative suppliers</li>
+                            <li><strong>Pandemic Response:</strong> Remote operations capability</li>
+                            <li><strong>Regulatory Changes:</strong> 6-month compliance buffer</li>
+                            <li><strong>Technology Shift:</strong> Pivot strategy within 12 months</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Implementation Plan -->
+        <div class="slide">
+            <div class="slide-number">17</div>
+            <div class="slide-header">
+                <h2>KẾ HOẠCH TRIỂN KHAI CHI TIẾT</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Lộ trình Triển khai Tổng thể (5 năm đầu)</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Timeline Triển khai Chi tiết theo Giai đoạn</h5>
+                        
+                        <!-- Timeline container -->
+                        <div style="position: relative; padding: 20px 0;">
+                            <!-- Main timeline line -->
+                            <div style="position: absolute; top: 50px; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #4CAF50, #2196F3, #FF9800, #9C27B0, #FF5722); border-radius: 2px;"></div>
+                            
+                            <!-- Phase 1: Chuẩn bị (Tháng 1-3) -->
+                            <div style="position: absolute; left: 5%; top: 20px;">
+                                <div style="width: 16px; height: 16px; background: #4CAF50; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #4CAF50;"></div>
+                                <div style="background: #4CAF50; color: white; padding: 12px; border-radius: 10px; width: 180px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;"> CHUẨN BỊ</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">Tháng 1-3 / 2025</div>
+                                </div>
+                                <div style="background: rgba(76, 175, 80, 0.1); padding: 10px; border-radius: 8px; width: 180px; border-left: 4px solid #4CAF50;">
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                         Hoàn tất thủ tục pháp lý<br>
+                                         Mua lại Tohin Factory<br>
+                                         Setup legal entity<br>
+                                         Due diligence hoàn tất
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 2: Xây dựng (Tháng 4-8) -->
+                            <div style="position: absolute; left: 25%; top: 20px;">
+                                <div style="width: 16px; height: 16px; background: #2196F3; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #2196F3;"></div>
+                                <div style="background: #2196F3; color: white; padding: 12px; border-radius: 10px; width: 180px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;"> XÂY DỰNG</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">Tháng 4-8 / 2025</div>
+                                </div>
+                                <div style="background: rgba(33, 150, 243, 0.1); padding: 10px; border-radius: 8px; width: 180px; border-left: 4px solid #2196F3;">
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                         Cải tạo nhà máy<br>
+                                         Lắp đặt dây chuyền SMT<br>
+                                         Tuyển dụng team core<br>
+                                         Thiết lập quy trình
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 3: Sản xuất (Tháng 9-12) -->
+                            <div style="position: absolute; left: 45%; top: 20px;">
+                                <div style="width: 16px; height: 16px; background: #FF9800; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FF9800;"></div>
+                                <div style="background: #FF9800; color: white; padding: 12px; border-radius: 10px; width: 180px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;"> SẢN XUẤT</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">Tháng 9-12 / 2025</div>
+                                </div>
+                                <div style="background: rgba(255, 152, 0, 0.1); padding: 10px; border-radius: 8px; width: 180px; border-left: 4px solid #FF9800;">
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                         Pilot production IoT<br>
+                                         Commercial launch<br>
+                                         Scale production<br>
+                                         Quality certification
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 4: Mở rộng (Năm 2-3) -->
+                            <div style="position: absolute; left: 65%; top: 20px;">
+                                <div style="width: 16px; height: 16px; background: #9C27B0; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #9C27B0;"></div>
+                                <div style="background: #9C27B0; color: white; padding: 12px; border-radius: 10px; width: 180px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;"> MỞ RỘNG</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">Năm 2-3 / 2026-27</div>
+                                </div>
+                                <div style="background: rgba(156, 39, 176, 0.1); padding: 10px; border-radius: 8px; width: 180px; border-left: 4px solid #9C27B0;">
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                         R&D Robot AMR<br>
+                                         Market expansion<br>
+                                         Product diversification<br>
+                                         Technology upgrade
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 5: Xuất khẩu (Năm 4-5) -->
+                            <div style="position: absolute; right: 5%; top: 20px;">
+                                <div style="width: 16px; height: 16px; background: #FF5722; border-radius: 50%; margin: 0 auto 15px; border: 3px solid white; box-shadow: 0 0 0 2px #FF5722;"></div>
+                                <div style="background: #FF5722; color: white; padding: 12px; border-radius: 10px; width: 180px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;"> XUẤT KHẨU</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">Năm 4-5 / 2028-29</div>
+                                </div>
+                                <div style="background: rgba(255, 87, 34, 0.1); padding: 10px; border-radius: 8px; width: 180px; border-left: 4px solid #FF5722;">
+                                    <div style="color: #1e3c72; font-size: 0.75rem; line-height: 1.3;">
+                                         Export pilot ASEAN<br>
+                                         International partnerships<br>
+                                         Regional market leader<br>
+                                         Technology excellence
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Summary -->
+                        <div style="margin-top: 220px; padding: 15px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(76, 175, 80, 0.2)); border-radius: 10px; border: 1px solid #FFD700;">
+                            <div style="text-align: center; color: #1e3c72;">
+                                <div style="font-weight: bold; font-size: 1.1rem;"> Mục tiêu: Từ khởi động đến doanh nghiệp xuất khẩu trong 5 năm</div>
+                                <div style="font-size: 0.9rem; margin-top: 5px;">Tiết kiệm 18 tháng nhờ mua lại nhà máy Tohin</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="commitment-card">
+                        <h4> Milestone 6 tháng đầu</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Tháng</th><th>Milestone chính</th></tr>
+                            <tr><td>T1</td><td>Ký hợp đồng mua Tohin, setup legal entity</td></tr>
+                            <tr><td>T2</td><td>Hoàn tất due diligence, bắt đầu cải tạo</td></tr>
+                            <tr><td>T3</td><td>Tuyển dụng team core, đặt hàng thiết bị</td></tr>
+                            <tr><td>T4</td><td>Lắp đặt SMT line, training nhân viên</td></tr>
+                            <tr><td>T5</td><td>Testing & commissioning, prototype đầu tiên</td></tr>
+                            <tr><td>T6</td><td>Pilot production, 100 units IoT Gateway</td></tr>
+                        </table>
+                    </div>
+                    <div class="commitment-card">
+                        <h4> Success Metrics by Year</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Year</th><th>Revenue</th><th>Employees</th><th>Products</th></tr>
+                            <tr><td>1</td><td>$0.2M</td><td>25</td><td>1</td></tr>
+                            <tr><td>2</td><td>$0.8M</td><td>40</td><td>2</td></tr>
+                            <tr><td>3</td><td>$1.5M</td><td>60</td><td>3</td></tr>
+                            <tr><td>4</td><td>$2.3M</td><td>80</td><td>4</td></tr>
+                            <tr><td>5</td><td>$3.2M</td><td>100</td><td>5</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h4> Chi tiết các Giai đoạn Triển khai</h4>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 20px;">Luồng công việc theo từng giai đoạn</h5>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                            
+                            <!-- Phase 1: Foundation -->
+                            <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.2)); border: 2px solid #4CAF50; border-radius: 15px; padding: 20px;">
+                                <div style="text-align: center; background: #4CAF50; color: white; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1rem;"> GIAI ĐOẠN 1</div>
+                                    <div style="font-size: 0.8rem;">Foundation (6 tháng)</div>
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">1⃣ Legal Setup</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Thiết lập pháp lý</div>
+                                    </div>
+                                    <div style="text-align: center; color: #4CAF50; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2⃣ Tohin Acquisition</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Mua lại nhà máy</div>
+                                    </div>
+                                    <div style="text-align: center; color: #4CAF50; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">3⃣ Core Team Hiring</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Tuyển dụng đội ngũ</div>
+                                    </div>
+                                    <div style="text-align: center; color: #4CAF50; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">4⃣ Facility Renovation</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Cải tạo cơ sở</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 2: Production -->
+                            <div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.2)); border: 2px solid #2196F3; border-radius: 15px; padding: 20px;">
+                                <div style="text-align: center; background: #2196F3; color: white; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1rem;"> GIAI ĐOẠN 2</div>
+                                    <div style="font-size: 0.8rem;">Production (12 tháng)</div>
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">1⃣ SMT Installation</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Lắp đặt dây chuyền</div>
+                                    </div>
+                                    <div style="text-align: center; color: #2196F3; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2⃣ Quality Systems</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Hệ thống chất lượng</div>
+                                    </div>
+                                    <div style="text-align: center; color: #2196F3; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">3⃣ Pilot Production</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Sản xuất thí điểm</div>
+                                    </div>
+                                    <div style="text-align: center; color: #2196F3; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">4⃣ Commercial Launch</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Ra mắt thương mại</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Phase 3: Scale -->
+                            <div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.1), rgba(255, 152, 0, 0.2)); border: 2px solid #FF9800; border-radius: 15px; padding: 20px;">
+                                <div style="text-align: center; background: #FF9800; color: white; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1rem;"> GIAI ĐOẠN 3</div>
+                                    <div style="font-size: 0.8rem;">Scale (24 tháng)</div>
+                                </div>
+                                
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF9800; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">1⃣ Volume Production</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Sản xuất quy mô</div>
+                                    </div>
+                                    <div style="text-align: center; color: #FF9800; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF9800; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">2⃣ Market Expansion</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Mở rộng thị trường</div>
+                                    </div>
+                                    <div style="text-align: center; color: #FF9800; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF9800; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">3⃣ AMR Development</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Phát triển Robot</div>
+                                    </div>
+                                    <div style="text-align: center; color: #FF9800; font-size: 1.2rem;">↓</div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF9800; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.8rem;">4⃣ Export Preparation</div>
+                                        <div style="color: #666; font-size: 0.7rem;">Chuẩn bị xuất khẩu</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Phase Flow -->
+                        <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 30px;">
+                            <div style="background: #4CAF50; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">GIAI ĐOẠN 1</div>
+                            <div style="color: #1e3c72; font-size: 1.5rem;">→</div>
+                            <div style="background: #2196F3; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">GIAI ĐOẠN 2</div>
+                            <div style="color: #1e3c72; font-size: 1.5rem;">→</div>
+                            <div style="background: #FF9800; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">GIAI ĐOẠN 3</div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px; padding: 10px; background: rgba(255, 215, 0, 0.2); border-radius: 8px;">
+                            <div style="color: #1e3c72; font-weight: bold; font-size: 1rem;"> Luồng triển khai tuần tự, đảm bảo chất lượng từng giai đoạn</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-metrics">
+                    <div class="metric-box">
+                        <div class="metric-number">6</div>
+                        <div class="metric-label">Tháng đến production</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">18</div>
+                        <div class="metric-label">Tháng tiết kiệm vs xây mới</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">24</div>
+                        <div class="metric-label">Tháng đến AMR launch</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-number">36</div>
+                        <div class="metric-label">Tháng đến export</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Cam kết với Ban Quản lý -->
+        <div class="slide">
+            <div class="slide-number">18</div>
+            <div class="slide-header">
+                <h2>CAM KẾT VỚI BAN QUẢN LÝ KHU CNC TP.HCM</h2>
+            </div>
+            
+            <div class="slide-content">
+                <div class="commitment-card">
+                    <h3 style="text-align: center; color: #FFD700;"> CAM KẾT CHIẾN LƯỢC</h3>
+                    <p style="text-align: center; font-size: 1.2rem; margin: 20px 0;">
+                        Mekong Technology Corporation cam kết xây dựng một doanh nghiệp công nghệ hàng đầu, 
+                        đóng góp tích cực vào sự phát triển của Khu Công nghệ cao TP.HCM
+                    </p>
+                </div>
+
+                <div class="content-grid three-column">
+                    <div class="commitment-card">
+                        <h4> Cam kết Đầu tư</h4>
+                        <ul class="very-small-text">
+                            <li> <strong>$10M USD</strong> đầu tư trong 5 năm đầu</li>
+                            <li> <strong>70% CAPEX</strong> cho thiết bị và hạ tầng</li>
+                            <li> <strong>3% doanh thu</strong> cho R&D hàng năm</li>
+                            <li> <strong>Reinvestment</strong> 80% lợi nhuận 10 năm đầu</li>
+                            <li> <strong>Green building</strong> LEED Gold standard</li>
+                        </ul>
+                    </div>
+                    <div class="commitment-card">
+                        <h4> Cam kết Xã hội</h4>
+                        <ul class="very-small-text">
+                            <li> <strong>200 việc làm</strong> chất lượng cao trong 10 năm</li>
+                            <li> <strong>80% tuyển dụng</strong> từ TP.HCM & vùng lân cận</li>
+                            <li> <strong>40h đào tạo</strong> mỗi nhân viên mỗi năm</li>
+                            <li> <strong>30% lao động nữ</strong> trong STEM positions</li>
+                            <li> <strong>Scholarship program</strong> cho sinh viên xuất sắc</li>
+                        </ul>
+                    </div>
+                    <div class="commitment-card">
+                        <h4> Cam kết Môi trường</h4>
+                        <ul class="very-small-text">
+                            <li> <strong>Carbon neutral</strong> đến năm 2035</li>
+                            <li> <strong>100% năng lượng tái tạo</strong> đến 2030</li>
+                            <li> <strong>Zero waste to landfill</strong> trong sản xuất</li>
+                            <li> <strong>90% tái chế</strong> vật liệu sản xuất</li>
+                            <li> <strong>ISO 14001</strong> certification trong năm đầu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-container-large">
+                    <h4 style="text-align: center;"> Đóng góp cho Sự phát triển Khu CNC TP.HCM</h4>
+                    <div style="background: white; padding: 25px; border-radius: 10px; border: 2px solid #FFD700;">
+                        <h5 style="color: #1e3c72; text-align: center; margin-bottom: 25px;">Các lĩnh vực Đóng góp Chiến lược</h5>
+                        
+                        <!-- Central Hub -->
+                        <div style="text-align: center; margin: 30px 0;">
+                            <div style="display: inline-block; background: linear-gradient(135deg, #FFD700, #FFA500); color: #1e3c72; padding: 20px; border-radius: 50%; border: 4px solid #1e3c72; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: bold; font-size: 1.2rem;">MEKONG TECH</div>
+                                    <div style="font-size: 1rem; margin-top: 5px;">ĐÓNG GÓP</div>
+                                    <div style="font-size: 0.8rem; margin-top: 5px;">KHU CNC TP.HCM</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Four Main Areas -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+                            
+                            <!-- Economic Impact -->
+                            <div style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.2)); border: 2px solid #4CAF50; border-radius: 15px; padding: 20px; position: relative;">
+                                <div style="text-align: center; background: #4CAF50; color: white; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1.1rem;"> TÁC ĐỘNG KINH TẾ</div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> $150M đóng góp GDP (50 năm)</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> $12M doanh thu thuế (50 năm)</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> 200 việc làm kỹ năng cao</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #4CAF50; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Hệ sinh thái chuỗi cung ứng</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Innovation Hub -->
+                            <div style="background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.2)); border: 2px solid #2196F3; border-radius: 15px; padding: 20px; position: relative;">
+                                <div style="text-align: center; background: #2196F3; color: white; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1.1rem;"> TRUNG TÂM ĐỔI MỚI</div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Hợp tác R&D với các trường ĐH</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Chương trình chuyển giao công nghệ</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Hỗ trợ ươm tạo startup</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #2196F3; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Trung tâm phát triển IP</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Regional Leadership -->
+                            <div style="background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(156, 39, 176, 0.2)); border: 2px solid #9C27B0; border-radius: 15px; padding: 20px; position: relative;">
+                                <div style="text-align: center; background: #9C27B0; color: white; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1.1rem;"> DẪN ĐẦU KHU VỰC</div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #9C27B0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Nền tảng xuất khẩu ASEAN</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #9C27B0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Showcase Industry 4.0</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #9C27B0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Demo sản xuất thông minh</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #9C27B0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Quan hệ đối tác quốc tế</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Development -->
+                            <div style="background: linear-gradient(135deg, rgba(255, 87, 34, 0.1), rgba(255, 87, 34, 0.2)); border: 2px solid #FF5722; border-radius: 15px; padding: 20px; position: relative;">
+                                <div style="text-align: center; background: #FF5722; color: white; padding: 12px; border-radius: 10px; margin-bottom: 15px;">
+                                    <div style="font-weight: bold; font-size: 1.1rem;"> PHÁT TRIỂN XÃ HỘI</div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF5722; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Chương trình giáo dục STEM</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF5722; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Sáng kiến đa dạng giới</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF5722; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Đầu tư cộng đồng (1% doanh thu)</div>
+                                    </div>
+                                    <div style="background: white; padding: 10px; border-radius: 8px; border-left: 4px solid #FF5722; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                        <div style="color: #1e3c72; font-weight: bold; font-size: 0.85rem;"> Trung tâm phát triển kỹ năng</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Summary -->
+                        <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 152, 0, 0.2)); border-radius: 15px; border: 2px solid #FFD700; text-align: center;">
+                            <div style="color: #1e3c72; font-weight: bold; font-size: 1.2rem;"> TỔNG KẾT ĐÓNG GÓP</div>
+                            <div style="color: #1e3c72; font-size: 1rem; margin-top: 10px;">
+                                Mekong Technology Corporation sẽ trở thành một doanh nghiệp công nghệ hàng đầu,<br>
+                                đóng góp toàn diện cho sự phát triển bền vững của Khu Công nghệ cao TP.HCM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid two-column">
+                    <div class="commitment-card">
+                        <h4> KPIs Cam kết với Ban Quản lý</h4>
+                        <table class="data-table very-small-text">
+                            <tr><th>Metric</th><th>Year 3</th><th>Year 5</th><th>Year 10</th></tr>
+                            <tr><td>Jobs created</td><td>60</td><td>100</td><td>200</td></tr>
+                            <tr><td>Revenue (M USD)</td><td>1.5</td><td>3.2</td><td>10.5</td></tr>
+                            <tr><td>Tax paid (M USD)</td><td>0.15</td><td>0.32</td><td>1.05</td></tr>
+                            <tr><td>Local suppliers</td><td>25</td><td>50</td><td>100</td></tr>
+                            <tr><td>University partnerships</td><td>3</td><td>5</td><td>8</td></tr>
+                        </table>
+                    </div>
+                    <div class="commitment-card">
+                        <h4> Success Measures</h4>
+                        <ul class="very-small-text">
+                            <li><strong>Economic:</strong> Top 3 high-tech company trong Park</li>
+                            <li><strong>Innovation:</strong> 15+ patents filed trong 5 năm</li>
+                            <li><strong>Export:</strong> 30% revenue từ xuất khẩu năm 2030</li>
+                            <li><strong>Awards:</strong> Vietnam High-tech Company of the Year</li>
+                            <li><strong>Partnerships:</strong> 5+ international technology alliances</li>
+                            <li><strong>ESG:</strong> B-Corp certification đến năm 2027</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="commitment-card" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #1e3c72; margin-top: 20px;">
+                    <h3 style="text-align: center; margin-bottom: 15px;"> CALL TO ACTION</h3>
+                    <p style="text-align: center; font-size: 1.3rem; font-weight: bold;">
+                        Chúng tôi mong muốn được hợp tác cùng Ban Quản lý Khu Công nghệ cao TP.HCM<br>
+                        để xây dựng một doanh nghiệp công nghệ hàng đầu, đóng góp vào sự phát triển bền vững của thành phố
+                    </p>
+                    <p style="text-align: center; font-size: 1rem; margin-top: 15px;">
+                        <strong>Next Steps:</strong> Approval in principle → Detailed due diligence → Investment agreement → Project kickoff
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation and Scripts remain the same -->
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()"> Trước</button>
+            <button class="nav-btn" onclick="nextSlide()">Tiếp </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#64FFDA',
+                primaryTextColor: '#1e3c72',
+                primaryBorderColor: '#2a5298',
+                lineColor: '#FFD700',
+                secondaryColor: '#82B1FF',
+                tertiaryColor: '#A5D6A7'
+            }
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            document.getElementById('slideCounter').textContent = `${index + 1} / ${totalSlides}`;
+            document.getElementById('progressFill').style.width = `${((index + 1) / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                event.preventDefault();
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                previousSlide();
+            } else if (event.key === 'Home') {
+                event.preventDefault();
+                currentSlide = 0;
+                showSlide(currentSlide);
+            } else if (event.key === 'End') {
+                event.preventDefault();
+                currentSlide = totalSlides - 1;
+                showSlide(currentSlide);
+            } else if (event.key === 'a' || event.key === 'A') {
+                // Toggle auto-advance with 'A' key
+                event.preventDefault();
+                toggleAutoAdvance();
+            } else if (event.key >= '1' && event.key <= '9') {
+                // Jump to slide 1-9 with number keys
+                event.preventDefault();
+                const slideNum = parseInt(event.key) - 1;
+                if (slideNum < totalSlides) {
+                    currentSlide = slideNum;
+                    showSlide(currentSlide);
+                }
+            } else if (event.key === 'f' || event.key === 'F') {
+                // Toggle fullscreen with 'F' key
+                event.preventDefault();
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+        });
+
+        // Click to advance (excluding navigation buttons and interactive elements)
+        document.addEventListener('click', function(event) {
+            if (!event.target.classList.contains('nav-btn') && 
+                !event.target.closest('.nav-btn') &&
+                !event.target.closest('.mermaid') &&
+                !event.target.closest('table') &&
+                !event.target.closest('.metric-box')) {
+                nextSlide();
+            }
+        });
+
+        // Initialize first slide with animation
+        setTimeout(() => {
+            showSlide(0);
+        }, 100);
+
+        // Auto-save slide position more frequently
+        setInterval(() => {
+            localStorage.setItem('mekong-ppt-slide', currentSlide);
+        }, 500);
+
+        // Add touch/swipe support for mobile
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            if (!startX || !startY) return;
+            
+            const endX = event.changedTouches[0].clientX;
+            const endY = event.changedTouches[0].clientY;
+            
+            const deltaX = startX - endX;
+            const deltaY = startY - endY;
+            
+            // Horizontal swipe detection
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    previousSlide();
+                }
+            }
+            
+            startX = 0;
+            startY = 0;
+        });
+
+        // Mermaid diagrams enhancement
+        mermaid.init();
+        
+        // Add context menu for presentation controls (right-click)
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            
+            // Simple context menu for slide navigation
+            const menu = document.createElement('div');
+            menu.style.position = 'fixed';
+            menu.style.left = event.clientX + 'px';
+            menu.style.top = event.clientY + 'px';
+            menu.style.background = 'rgba(0,0,0,0.8)';
+            menu.style.color = 'white';
+            menu.style.padding = '10px';
+            menu.style.borderRadius = '5px';
+            menu.style.zIndex = '10000';
+            menu.style.fontSize = '14px';
+            
+            menu.innerHTML = `
+                <div style="cursor: pointer; padding: 5px;" onclick="currentSlide = 0; showSlide(currentSlide); this.parentElement.remove();"> Trang đầu</div>
+                <div style="cursor: pointer; padding: 5px;" onclick="toggleAutoAdvance(); this.parentElement.remove();">⏯ Auto-advance</div>
+                <div style="cursor: pointer; padding: 5px;" onclick="document.documentElement.requestFullscreen(); this.parentElement.remove();"> Fullscreen</div>
+                <div style="cursor: pointer; padding: 5px;" onclick="window.print(); this.parentElement.remove();"> Print</div>
+            `;
+            
+            document.body.appendChild(menu);
+            
+            // Remove menu after 3 seconds
+            setTimeout(() => {
+                if (menu.parentElement) {
+                    menu.remove();
+                }
+            }, 3000);
+        });
+
+        // Print optimization
+        window.addEventListener('beforeprint', function() {
+            // Show all slides for printing
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.style.display = 'block';
+                slide.style.pageBreakAfter = 'always';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            // Restore normal slide display
+            showSlide(currentSlide);
+        });
+
+        console.log(' Mekong Tech Hub Presentation - 18 slides loaded successfully!');
+        console.log(' Keyboard shortcuts:');
+        console.log('   → Space/Arrow Right: Next slide');
+        console.log('   ← Arrow Left: Previous slide');
+        console.log('    Home: First slide');
+        console.log('    End: Last slide');
+        console.log('    1-9: Jump to slide');
+        console.log('    A: Toggle auto-advance');
+        console.log('    F: Toggle fullscreen');
+        console.log('    Right-click: Context menu');
+
+        // Load saved position
+        const savedSlide = localStorage.getItem('mekong-ppt-slide');
+        if (savedSlide && savedSlide < totalSlides) {
+            currentSlide = parseInt(savedSlide);
+            showSlide(currentSlide);
+        }
+
+        // Enhanced animations for slide transitions
+        function animateSlideTransition() {
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) {
+                const elements = activeSlide.querySelectorAll('.metric-box, .chart-container, .mermaid, .product-card, .team-card, .esg-card, .case-study-card, .competitive-card, .risk-card, .commitment-card');
+                elements.forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        element.style.transition = 'all 0.6s ease-out';
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        }
+
+        // Call animation on slide change
+        const originalShowSlide = showSlide;
+        showSlide = function(index) {
+            originalShowSlide(index);
+            setTimeout(animateSlideTransition, 100);
+        };
+
+        // Auto-advance slides (optional - can be enabled for demo mode)
+        let autoAdvance = false;
+        let autoAdvanceInterval;
+
+        function toggleAutoAdvance() {
+            autoAdvance = !autoAdvance;
+            if (autoAdvance) {
+                autoAdvanceInterval = setInterval(() => {
+                    nextSlide();
+                }, 30000); // 30 seconds per slide
+                console.log('Auto-advance enabled');
+            } else {
+                clearInterval(autoAdvanceInterval);
+                console.log('Auto-advance disabled');
+            }
+        }
+    </script>
+</body>
+</html>

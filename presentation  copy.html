@@ -524,42 +524,50 @@
             margin-top: 3px;
         }
 
-        /* Table Styles - Fixed */
         .table-container {
             width: 100%;
             overflow-x: auto;
-            margin: 1.5rem 0;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
-            padding: 10px;
+            margin: 15px 0;
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            font-size: 0.85rem;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 0.9rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
 
         .data-table th {
-            background: linear-gradient(135deg, #00BCD4, #E91E63);
+            background: var(--gradient-secondary);
             color: white;
-            padding: 12px;
+            padding: 1rem;
             text-align: left;
             font-family: 'Inter', sans-serif;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             position: relative;
         }
 
+        .data-table th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-green));
+        }
+
         .data-table td {
-            padding: 10px 12px;
+            padding: 0.75rem 1rem;
             text-align: left;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             transition: background-color 0.3s ease;
+            position: relative;
         }
 
         .data-table tr:nth-child(even) {
@@ -568,6 +576,8 @@
 
         .data-table tr:hover {
             background: rgba(255,140,66,0.1);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
         }
 
         /* Table Icons */
@@ -596,13 +606,23 @@
             border-left: 4px solid var(--primary-orange);
         }
 
+        /* Responsive Tables */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+        }
+
         @media (max-width: 768px) {
             .data-table {
                 font-size: 0.8rem;
             }
             
             .data-table th, .data-table td {
-                padding: 8px;
+                padding: 0.5rem;
                 word-break: break-word;
             }
         }
@@ -1830,84 +1850,7 @@
                 <h1>ĐỘI NGŨ LÃNH ĐẠO VÀ NHÂN SỰ</h1>
             </div>
             <div class="slide-content">
-                <!-- Ban Điều hành - Bảng chính -->
-                <div style="background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08)); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(15px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); margin-bottom: 2rem; opacity: 1 !important;">
-                    <h3 style="color: #FF8C42; margin-bottom: 1.5rem; text-align: center; font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600;">BAN ĐIỀU HÀNH</h3>
-                    <div style="overflow-x: auto; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 15px;">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                            <thead>
-                                <tr style="background: linear-gradient(135deg, #00BCD4, #E91E63);">
-                                    <th style="padding: 15px; text-align: left; color: white; font-weight: 600; border-radius: 8px 0 0 0;">Vị trí</th>
-                                    <th style="padding: 15px; text-align: left; color: white; font-weight: 600;">Họ tên</th>
-                                    <th style="padding: 15px; text-align: left; color: white; font-weight: 600;">Tuổi</th>
-                                    <th style="padding: 15px; text-align: left; color: white; font-weight: 600;">Trình độ</th>
-                                    <th style="padding: 15px; text-align: left; color: white; font-weight: 600; border-radius: 0 8px 0 0;">Kinh nghiệm</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">CEO</td>
-                                    <td style="padding: 12px 15px;">Phạm Xuân Quốc</td>
-                                    <td style="padding: 12px 15px;">50</td>
-                                    <td style="padding: 12px 15px;">Kỹ sư điện tử - điện tử</td>
-                                    <td style="padding: 12px 15px;">25 năm</td>
-                                </tr>
-                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">CTO</td>
-                                    <td style="padding: 12px 15px;">Phạm Đình Chương</td>
-                                    <td style="padding: 12px 15px;">36</td>
-                                    <td style="padding: 12px 15px;">Kỹ sư điện tử truyền thông</td>
-                                    <td style="padding: 12px 15px;">10 năm</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">Deputy CTO - Strategy</td>
-                                    <td style="padding: 12px 15px;">Trương Đình Nhơn</td>
-                                    <td style="padding: 12px 15px;">55</td>
-                                    <td style="padding: 12px 15px;">Phó giáo sư, Tiến sĩ</td>
-                                    <td style="padding: 12px 15px;">30 năm</td>
-                                </tr>
-                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">Deputy CTO - Innovation & IP</td>
-                                    <td style="padding: 12px 15px;">Võ Lâm Trương</td>
-                                    <td style="padding: 12px 15px;">50</td>
-                                    <td style="padding: 12px 15px;">Tiến sĩ</td>
-                                    <td style="padding: 12px 15px;">25 năm</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">CFO</td>
-                                    <td style="padding: 12px 15px;">Phạm Thị Mỹ Phước</td>
-                                    <td style="padding: 12px 15px;">45</td>
-                                    <td style="padding: 12px 15px;">Cử nhân</td>
-                                    <td style="padding: 12px 15px;">20 năm</td>
-                                </tr>
-                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">COO</td>
-                                    <td style="padding: 12px 15px;">Bùi Thị Bích Thảo</td>
-                                    <td style="padding: 12px 15px;">44</td>
-                                    <td style="padding: 12px 15px;">Kỹ sư điện</td>
-                                    <td style="padding: 12px 15px;">18 năm</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">CCO</td>
-                                    <td style="padding: 12px 15px;">Trần Minh Trung</td>
-                                    <td style="padding: 12px 15px;">41</td>
-                                    <td style="padding: 12px 15px;">Kỹ sư điện</td>
-                                    <td style="padding: 12px 15px;">12 năm</td>
-                                </tr>
-                                <tr style="background: rgba(255,255,255,0.05);">
-                                    <td style="padding: 12px 15px; font-weight: 600; color: #FF8C42;">CHRO</td>
-                                    <td style="padding: 12px 15px;">Phạm Thị Thu Hà</td>
-                                    <td style="padding: 12px 15px;">45</td>
-                                    <td style="padding: 12px 15px;">Cử nhân</td>
-                                    <td style="padding: 12px 15px;">20 năm</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Thông tin bổ sung -->
-                <div class="content-grid two-col">
+                <div class="content-grid">
                     <div class="card">
                         <h3>Kế hoạch tuyển dụng</h3>
                         <table class="data-table">
@@ -1919,7 +1862,7 @@
                         </table>
                     </div>
                     <div class="card">
-                        <h3>Phân bổ nhân sự (60 người)</h3>
+                        <h3>Phân bổ nhân sự chi tiết (60 người)</h3>
                         <table class="data-table">
                             <tr><td><strong>Ban Giám đốc</strong></td><td>6 người (10%)</td></tr>
                             <tr><td><strong>R&D</strong></td><td>15 người (25%)</td></tr>
@@ -1932,13 +1875,86 @@
                     </div>
                 </div>
 
-                <!-- Chiến lược nhân tài -->
+                <div class="card">
+                    <h3>Ban Điều hành</h3>
+                    <div style="overflow-x: auto; margin: 15px 0;">
+                        <table style="width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 0.85rem;">
+                            <thead>
+                                <tr style="background: linear-gradient(135deg, #00BCD4, #E91E63);">
+                                    <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Vị trí</th>
+                                    <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Họ tên</th>
+                                    <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Tuổi</th>
+                                    <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Trình độ</th>
+                                    <th style="padding: 12px; text-align: left; color: white; font-weight: 600;">Kinh nghiệm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">CEO</td>
+                                    <td style="padding: 10px 12px;">Phạm Xuân Quốc</td>
+                                    <td style="padding: 10px 12px;">50</td>
+                                    <td style="padding: 10px 12px;">Kỹ sư điện tử - điện tử</td>
+                                    <td style="padding: 10px 12px;">25 năm</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">CTO</td>
+                                    <td style="padding: 10px 12px;">Phạm Đình Chương</td>
+                                    <td style="padding: 10px 12px;">36</td>
+                                    <td style="padding: 10px 12px;">Kỹ sư điện tử truyền thông</td>
+                                    <td style="padding: 10px 12px;">10 năm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">Deputy CTO - Strategy</td>
+                                    <td style="padding: 10px 12px;">Trương Đình Nhơn</td>
+                                    <td style="padding: 10px 12px;">55</td>
+                                    <td style="padding: 10px 12px;">Phó giáo sư, Tiến sĩ</td>
+                                    <td style="padding: 10px 12px;">30 năm</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">Deputy CTO - Innovation & IP</td>
+                                    <td style="padding: 10px 12px;">Võ Lâm Trương</td>
+                                    <td style="padding: 10px 12px;">50</td>
+                                    <td style="padding: 10px 12px;">Tiến sĩ</td>
+                                    <td style="padding: 10px 12px;">25 năm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">CFO</td>
+                                    <td style="padding: 10px 12px;">Phạm Thị Mỹ Phước</td>
+                                    <td style="padding: 10px 12px;">45</td>
+                                    <td style="padding: 10px 12px;">Cử nhân</td>
+                                    <td style="padding: 10px 12px;">20 năm</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">COO</td>
+                                    <td style="padding: 10px 12px;">Bùi Thị Bích Thảo</td>
+                                    <td style="padding: 10px 12px;">44</td>
+                                    <td style="padding: 10px 12px;">Kỹ sư điện</td>
+                                    <td style="padding: 10px 12px;">18 năm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <td style="padding: 10px 12px;">CCO</td>
+                                    <td style="padding: 10px 12px;">Trần Minh Trung</td>
+                                    <td style="padding: 10px 12px;">41</td>
+                                    <td style="padding: 10px 12px;">Kỹ sư điện</td>
+                                    <td style="padding: 10px 12px;">12 năm</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.05);">
+                                    <td style="padding: 10px 12px;">CHRO</td>
+                                    <td style="padding: 10px 12px;">Phạm Thị Thu Hà</td>
+                                    <td style="padding: 10px 12px;">45</td>
+                                    <td style="padding: 10px 12px;">Cử nhân</td>
+                                    <td style="padding: 10px 12px;">20 năm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <div class="highlight-box">
                     <div class="highlight-text">CHIẾN LƯỢC NHÂN TÀI</div>
                     <p>Retention rate 85% | Productivity 600M VNĐ/person | Training 40h/year | ESOP 5% equity pool</p>
                 </div>
 
-                <!-- Metrics -->
                 <div class="content-grid three-col">
                     <div class="metric-card">
                         <span class="metric-value">60</span>

@@ -398,6 +398,15 @@
             font-weight: bold;
         }
 
+        /* Ensure table text is visible only for white-background tables (Slide 14) */
+        .white-table .data-table tbody td { color: #1e3c72; }
+        .white-table .data-table tbody td strong { color: #1b3566; }
+        .white-table .data-table tbody tr[style*="rgba(255, 87, 34"] td { color: #5b2c12; }
+        .white-table .data-table thead th {
+            background: #1e3c72 !important;
+            color: #ffffff !important;
+        }
+
         .system-architecture {
             background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(63, 81, 181, 0.1));
             border: 2px solid rgba(100, 255, 218, 0.3);
@@ -526,6 +535,7 @@
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
+        
                         <div class="slide-counter" id="slideCounter">1 / 22</div>
 
         <!-- Slide 1: Title & Company Info -->
@@ -537,7 +547,7 @@
                 <div class="location-badge">KHU CÔNG NGHỆ CAO TP.HCM - PHƯỜNG LONG THẠNH MỸ - TP. THỦ ĐỨC</div>
             </div>
             
-            <div class="slide-content">
+            <div class="slide-content" style="overflow-y: auto;">
                 <p style="font-size: 1.4rem; text-align: center; margin: 20px 0;">
                     <span class="highlight">Dự án đầu tư 10 triệu USD</span><br>
                     Phát triển bền vững 50 năm - Trung tâm IoT Gateway & Robot AMR hàng đầu khu vực
@@ -562,12 +572,8 @@
                     </div>
                 </div>
 
-                <div class="mermaid">
-                    graph LR
-                        A[IoT Gateway<br/>12 models] --> C[Smart Factory<br/>Integration]
-                        B[Robot AMR<br/>8 models] --> C
-                        C --> D[AI Analytics<br/>Platform]
-                        D --> E[Industry 4.0<br/>Solutions]
+                <div style="display:flex; justify-content:center; margin: 10px 0;">
+                    <img src="MODEL BASIC MEKONG FACTORY.jpg" alt="Mekong Smart Factory" style="max-width: 75%; height: 75%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.25);"/>
                 </div>
 
                 <p class="small-text" style="text-align: center; margin-top: 20px;">
@@ -584,7 +590,7 @@
                 <h2>TÓM TẮT ĐIỀU HÀNH</h2>
             </div>
             
-            <div class="slide-content">
+            <div class="slide-content" style="overflow: auto; padding-bottom: 40px;">
                 <div class="content-grid two-column">
                     <div class="compliance-card">
                         <h3> Thông tin dự án</h3>
@@ -592,7 +598,7 @@
                             <tr><td><strong>Tên dự án</strong></td><td>Nhà máy sản xuất thiết bị công nghệ cao Mekong</td></tr>
                             <tr><td><strong>Chủ đầu tư</strong></td><td>Công ty Cổ phần Công nghệ Mekong</td></tr>
                             <tr><td><strong>Địa điểm</strong></td><td>Khu CNC TP.HCM, Long Thạnh Mỹ, Thủ Đức</td></tr>
-                            <tr><td><strong>Diện tích</strong></td><td>10,040 m² (đã xây dựng 1,000 m²)</td></tr>
+                            <tr><td><strong>Diện tích</strong></td><td>1,040 m² (đã xây dựng 1,000 m²)</td></tr>
                             <tr><td><strong>Tổng vốn</strong></td><td>10 triệu USD</td></tr>
                             <tr><td><strong>Thời gian</strong></td><td>50 năm (2025-2075)</td></tr>
                         </table>
@@ -799,6 +805,9 @@
                     </div>
                 </div>
 
+
+                
+
                 <div class="content-grid two-column">
                     <div class="chart-container">
                         <h4> Thị trường IoT công nghiệp Việt Nam</h4>
@@ -848,7 +857,7 @@
                         <div class="metric-label">Chu kỳ dự án</div>
                     </div>
                 </div>
-
+                
                 <div class="chart-container-large">
                     <h4 style="text-align: center;"> Phân bổ vốn đầu tư chi tiết</h4>
                     <div class="system-architecture">
@@ -912,7 +921,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="content-grid two-column">
                     <div class="chart-container">
                         <h4> Chi tiết CAPEX ($7M)</h4>
@@ -956,7 +964,7 @@
                         <div class="metric-label">Giá mua lại</div>
                     </div>
                     <div class="metric-box">
-                        <div class="metric-number">15,000m²</div>
+                        <div class="metric-number">1,040m²</div>
                         <div class="metric-label">Diện tích đất</div>
                     </div>
                     <div class="metric-box">
@@ -1000,7 +1008,7 @@
                             <div class="layer-box" style="background: rgba(76, 175, 80, 0.2); border-color: #4CAF50; padding: 20px;">
                                 <div style="text-align: center;">
                                     <div style="font-size: 1.3rem;"><strong> NHÀ MÁY TOHIN</strong></div>
-                                    <div style="font-size: 1.1rem; margin: 10px 0;">10,040 m² tổng diện tích</div>
+                                    <div style="font-size: 1.1rem; margin: 10px 0;">1,040 m² tổng diện tích</div>
                                     
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
                                         <div class="layer-box" style="background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255,255,255,0.5);">
@@ -1108,6 +1116,8 @@
                                 <div>AMR-1000 Heavy<br><small>1000kg payload<br>Advanced Navigation<br>2.5-3.5 tỷ VNĐ</small></div>
                             </div>
                         </div>
+
+                        
                         
                         <div class="connection-arrow"></div>
                         
@@ -1161,6 +1171,35 @@
                             <li>Đào tạo vận hành</li>
                             <li>Bảo trì & hỗ trợ 24/7</li>
                         </ul>
+                    </div>
+                    
+                </div>
+                
+                <div class="chart-container-large" style="padding-bottom: 120px; position: relative; z-index: 1;">
+                    <h4 style="text-align:center; margin-bottom: 12px;">Nguyên mẫu sản phẩm</h4>
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; max-width: 1200px; margin: 0 auto; align-items: start;">
+                        <figure style="width: 100%; grid-column: 1 / 2;">
+                            <img src="assets/products/service_robot_waiter.jpg" alt="Robot phục vụ – mô‑đun dịch vụ/PR, chuyển giao công nghệ" style="width: 100%; height: 380px; object-fit: contain; object-position: center top; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.9; margin-top:6px;">Robot phục vụ – mô‑đun dịch vụ/PR, chuyển giao công nghệ</figcaption>
+                        </figure>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; grid-column: 2 / 3;">
+                            <figure style="width: 100%;">
+                                <img src="assets/products/amr_flat_platform.jpg" alt="AMR nền phẳng – tải 200–400 kg, SLAM LiDAR" style="width: 100%; height: 190px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                                <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">AMR nền phẳng – tải 200–400 kg, SLAM LiDAR</figcaption>
+                            </figure>
+                            <figure style="width: 100%;">
+                                <img src="assets/products/amr_shelf_cart.jpg" alt="AMR chở kệ – luân chuyển linh kiện giữa kho → line" style="width: 100%; height: 170px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                                <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">AMR chở kệ – luân chuyển linh kiện giữa kho → line</figcaption>
+                            </figure>
+                            <figure style="width: 100%;">
+                                <img src="assets/products/amr_small_platform.jpg" alt="AMR nhỏ gọn – phù hợp lối hẹp (1,040 m²)" style="width: 100%; height: 160px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                                <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">AMR nhỏ gọn – phù hợp lối hẹp (1,040 m²)</figcaption>
+                            </figure>
+                            <figure style="width: 100%;">
+                                <img src="assets/products/amr_under_ride_platform.jpg" alt="AMR under‑ride – nâng/đẩy kệ tự động" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                                <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">AMR under‑ride – nâng/đẩy kệ tự động</figcaption>
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1223,6 +1262,7 @@
                                 <div>32 kênh I/O</div>
                             </div>
                         </div>
+
                         
                         <div class="connection-arrow"></div>
                         
@@ -1235,6 +1275,8 @@
                                 <div>Cảm biến lực</div>
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
 
@@ -1258,6 +1300,36 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="chart-container-large" style="margin-top: 12px;">
+                    <h4 style="text-align:center; margin-bottom: 12px;">Nguyên mẫu phần cứng IoT/Điều khiển</h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 1200px; margin: 0 auto;">
+                        <figure style="width: 100%;">
+                            <img src="assets/products/iot_gateway_poe_pse.jpg" alt="IoT Gateway (PoE/PSE) – cấp nguồn & backhaul Ethernet" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">IoT Gateway (PoE/PSE) – cấp nguồn & backhaul Ethernet</figcaption>
+                        </figure>
+                        <figure style="width: 100%;">
+                            <img src="assets/products/iot_gateway_edge_box.jpg" alt="Edge IoT Gateway – công nghiệp, đa giao tiếp" style="width: 100%; height: 170px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">Edge IoT Gateway – công nghiệp, đa giao tiếp</figcaption>
+                        </figure>
+                        <figure style="width: 100%;">
+                            <img src="assets/products/industrial_power_supply_module.jpg" alt="Nguồn công nghiệp 24–48V DC – ổn định & tin cậy" style="width: 100%; height: 190px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">Nguồn công nghiệp 24–48V DC – ổn định & tin cậy</figcaption>
+                        </figure>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 920px; margin: 12px auto 0;">
+                        <figure style="width: 100%;">
+                            <img src="assets/products/iot_controller_din_rail.jpg" alt="Bộ điều khiển DIN‑rail – I/O số/analog, dễ lắp đặt" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">Bộ điều khiển DIN‑rail – I/O số/analog, dễ lắp đặt</figcaption>
+                        </figure>
+                        <figure style="width: 100%;">
+                            <img src="assets/products/edge_computer_din_rail.jpg" alt="Edge Computer DIN‑rail – AI/analytics tại biên" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); border: 2px solid rgba(255,255,255,0.15);" />
+                            <figcaption class="very-small-text" style="text-align:center; opacity:0.8; margin-top:6px;">Edge Computer DIN‑rail – AI/analytics tại biên</figcaption>
+                        </figure>
+                    </div>
+                </div>    
+            
+            
             </div>
         </div>
 
@@ -2034,7 +2106,7 @@
                 </div>
 
                 <!-- ENHANCED DETAILED COMPETITOR COMPARISON TABLE -->
-                <div class="chart-container-large">
+                <div class="chart-container-large white-table">
                     <h4 style="text-align: center;"> So sánh Chi tiết với Các Đối thủ Chính</h4>
                     <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 1000px;">
@@ -2271,7 +2343,7 @@
                 </div>
 
                 <!-- SENSITIVITY PHÂN TÍCH TABLE -->
-                <div class="chart-container-large">
+                <div class="chart-container-large white-table">
                     <h4 style="text-align: center;"> Sensitivity Phân tích - 5 Key Variables</h4>
                     <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 900px;">

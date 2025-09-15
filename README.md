@@ -37,7 +37,30 @@ This presentation contains 18 comprehensive slides covering:
 - **Market Share Target:** 15% in ASEAN by 2040
 
 ## 🌐 Live Presentation
-**View Online:** [GitHub Pages Link](https://your-username.github.io/mekong-tech-presentation/)
+**Xem online:** [`GitHub Pages`](https://kimlam2010.github.io/mekong-investment-presentation/)
+
+## 📦 Cấu trúc tệp đã tinh gọn
+- `index.html` — Slide thuyết trình chính (sử dụng Chart.js, không phụ thuộc build)
+- `PPT.html` — Bản gốc tham chiếu
+- `README.md` — Tài liệu dự án (file này)
+- `QUICK_DEPLOY.md` — Hướng dẫn triển khai nhanh GitHub Pages
+- `MANUAL_PUSH_GUIDE.md` — Hướng dẫn push thủ công
+- `UPDATE_LOG.md` — Nhật ký cập nhật
+- `push_to_github.bat` — Script đẩy mã lên GitHub (tùy chọn)
+
+Đã xóa các tệp trùng/backup: `index_backup.html`, `presentation  copy.html`, `presentation .html`.
+
+## ▶️ Cách chạy cục bộ
+- Mở `index.html` trực tiếp bằng trình duyệt hiện đại (Chrome/Edge/Firefox)
+- Yêu cầu internet để tải CDN: Chart.js và Font Awesome
+
+## 🚀 Triển khai GitHub Pages (nhanh)
+1) Tạo repository công khai trên GitHub nếu chưa có
+2) Push mã nguồn lên nhánh `main`
+3) Vào Settings → Pages → Source: Deploy from a branch → Branch: `main` / `(root)` → Save
+4) Truy cập: `https://<username>.github.io/mekong-investment-presentation/`
+
+Liên quan: xem thêm `QUICK_DEPLOY.md` và `MANUAL_PUSH_GUIDE.md`.
 
 ## 🚀 Technologies Used
 - **HTML5 & CSS3** - Modern responsive design

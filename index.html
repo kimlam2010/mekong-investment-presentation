@@ -17,7 +17,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            overflow: hidden;
+            overflow: visible;
             position: relative;
         }
 
@@ -29,9 +29,10 @@
 
         .slide {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
+            height: auto;
             display: none;
-            padding: 40px 60px;
+            padding: 30px 50px;
             position: absolute;
             top: 0;
             left: 0;
@@ -39,8 +40,7 @@
             align-items: flex-start;
             justify-content: flex-start;
             flex-direction: column;
-            overflow-y: auto;
-            scroll-behavior: smooth;
+            overflow: visible;
         }
 
         .slide.active {
@@ -50,7 +50,7 @@
         .slide-header {
             width: 100%;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             border-bottom: 3px solid #FFD700;
             padding-bottom: 15px;
         }
@@ -92,12 +92,13 @@
 
         .slide-content {
             width: 100%;
-            height: calc(100% - 120px);
+            min-height: calc(100% - 100px);
+            height: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            overflow-y: auto;
+            overflow: visible;
         }
 
         .content-grid {
@@ -381,7 +382,7 @@
             border-collapse: collapse;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            overflow: hidden;
+            overflow: visible;
             margin: 15px 0;
         }
 
@@ -547,7 +548,7 @@
                 <div class="location-badge">KHU CÔNG NGHỆ CAO TP.HCM - PHƯỜNG LONG THẠNH MỸ - TP. THỦ ĐỨC</div>
             </div>
             
-            <div class="slide-content" style="overflow-y: auto;">
+            <div class="slide-content">
                 <p style="font-size: 1.4rem; text-align: center; margin: 20px 0;">
                     <span class="highlight">Dự án đầu tư 10 triệu USD</span><br>
                     Phát triển bền vững 50 năm - Trung tâm IoT Gateway & Robot AMR hàng đầu khu vực
@@ -590,7 +591,7 @@
                 <h2>TÓM TẮT ĐIỀU HÀNH</h2>
             </div>
             
-            <div class="slide-content" style="overflow: auto; padding-bottom: 40px;">
+            <div class="slide-content" style="padding-bottom: 40px;">
                 <div class="content-grid two-column">
                     <div class="compliance-card">
                         <h3> Thông tin dự án</h3>
@@ -2117,7 +2118,7 @@
                 <!-- ENHANCED DETAILED COMPETITOR COMPARISON TABLE -->
                 <div class="chart-container-large white-table">
                     <h4 style="text-align: center;"> So sánh Chi tiết với Các Đối thủ Chính</h4>
-                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 1000px;">
                             <thead>
                                 <tr style="background: #1e3c72; color: white;">
@@ -2354,7 +2355,7 @@
                 <!-- SENSITIVITY PHÂN TÍCH TABLE -->
                 <div class="chart-container-large white-table">
                     <h4 style="text-align: center;"> Sensitivity Phân tích - 5 Key Variables</h4>
-                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 900px;">
                             <thead>
                                 <tr style="background: #1e3c72; color: white;">
@@ -3676,7 +3677,7 @@
                 <!-- SUPPLIER PHÂN TÍCH -->
                 <div class="chart-container-large white-table">
                     <h4 style="text-align: center;"> Detailed Supplier Phân tích - Top 10 Critical Linh kiệns</h4>
-                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 1000px;">
                             <thead>
                                 <tr style="background: #1e3c72; color: white;">
@@ -3946,7 +3947,7 @@
                 <!-- KỊCH BẢNS COMPARISON TABLE -->
                 <div class="chart-container-large white-table">
                                             <h4 style="text-align: center; color: #1e3c72;"> So Sánh Kịch Bản Tài Chính (Giai Đoạn Đầu Tư 10 Năm)</h4>
-                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700; overflow-x: auto;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 2px solid #FFD700;">
                         <table class="data-table very-small-text" style="width: 100%; min-width: 1000px;">
                             <thead>
                                 <tr style="background: #1e3c72; color: white;">
